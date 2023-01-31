@@ -14,7 +14,7 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "AlgoRush v0.1");
 
     sf::Event event;
 
