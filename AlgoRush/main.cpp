@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "Character.h"
+
 int main()
 {
     srand(time(0));
@@ -14,12 +16,20 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "AlgoRush");
 
     sf::Event event;
 
-    while (window.isOpen()) {
+    sfp::PhysicsRectangle floor;
+    floor.setSize(Vector2f(800, 50));
+    floor.setCenter(Vector2f(400, 575));
+    floor.setStatic(true);
+    world.AddPhysicsBody(floor);
 
+    Character C(&world);
+    
+    while (window.isOpen()) {
+        
         while (window.pollEvent(event)) {
 
             if (event.type == sf::Event::Closed) {
@@ -36,8 +46,11 @@ int main()
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
             //window.draw(player);
+            window.draw(floor);
+            C.draw(&window);
             window.display();
         }
+        //C.forward();
     }
 
     return 0;
