@@ -9,13 +9,17 @@ class Level1 : public Levels
 {
 private:
 	sf::Texture m_backgroundLevel1T;
+	//sf::Texture m_blockBackgroundLevel1T;
 	sf::Texture m_floorLevel1T;
 	sf::Texture m_bookPileT;
 	sf::Texture m_DVDPileT;
 	sf::Texture m_shelfT;
 	sf::Texture m_exitLevel1T;
 
+	sfp::PhysicsRectangle m_blockBackgroundLevel1;
+
 	sfp::PhysicsSprite m_backgroundLevel1;
+	//sfp::PhysicsSprite m_blockBackgroundLevel1;
 	sfp::PhysicsSprite m_floorLevel1;
 	sfp::PhysicsSprite m_bookPile;
 	sfp::PhysicsSprite m_DVDPile;

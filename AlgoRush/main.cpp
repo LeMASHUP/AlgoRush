@@ -44,7 +44,6 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            //if (level == 1) level1.DrawLevels(&window);
             if (level == 1) level1.DrawLevel1(&window);
             else if (level == 2) level2.DrawLevels(&window);
             window.display();
