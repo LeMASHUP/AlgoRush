@@ -9,6 +9,11 @@ sfp::PhysicsRectangle Levels::getBackground()
 	return m_background;
 }
 
+//sfp::PhysicsSprite Levels::getBackground()
+//{
+//	return m_background;
+//}
+
 sfp::PhysicsRectangle Levels::getFloor()
 {
 	return m_floor;

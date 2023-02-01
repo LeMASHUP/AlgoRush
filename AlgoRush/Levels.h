@@ -11,13 +11,13 @@ class Levels
 private:
 	
 protected:
-	std::string m_backgroundSprite;
-	std::string m_floorSprite;
 	sfp::PhysicsRectangle m_background;
+	//sfp::PhysicsSprite m_background;
 	sfp::PhysicsRectangle m_floor;
 public:
 	Levels();
 	sfp::PhysicsRectangle getBackground();
+	//sfp::PhysicsSprite getBackground();
 	sfp::PhysicsRectangle getFloor();
 	void DrawLevels(sf::RenderWindow* window);
 };

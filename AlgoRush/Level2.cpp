@@ -15,3 +15,13 @@ Level2::Level2(sfp::World* world) : Levels()
 Level2::~Level2()
 {
 }
+
+void Level2::DrawLevel2(sf::RenderWindow* window)
+{
+	window->draw(m_background);
+	window->draw(m_floor);
+	window->draw(m_paperPlane);
+	window->draw(m_trashCan);
+	window->draw(m_fireHydrant);
+	window->draw(m_exit);
+}
