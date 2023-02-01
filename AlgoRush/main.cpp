@@ -4,8 +4,13 @@
 #include <iostream>
 #include <string>
 
+#include "Level1.h"
+#include "Level2.h"
+
 int main()
 {
+    int level = 1;
+
     srand(time(0));
 
     Vector2f gravity(0, 1.0);
@@ -17,6 +22,10 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
 
     sf::Event event;
+
+    //Creation of levels;
+    Level1 level1(&world);
+    Level2 level2(&world);
 
     while (window.isOpen()) {
 
@@ -35,7 +44,8 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            //window.draw(player);
+            if (level == 1) level1.DrawLevels(&window);
+            else if (level == 2) level2.DrawLevels(&window);
             window.display();
         }
     }
