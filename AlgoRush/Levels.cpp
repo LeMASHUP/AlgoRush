@@ -4,23 +4,17 @@ Levels::Levels()
 {
 }
 
-sfp::PhysicsRectangle Levels::getBackground()
+sfp::PhysicsSprite Levels::getBackground()
 {
 	return m_background;
 }
 
-//sfp::PhysicsSprite Levels::getBackground()
-//{
-//	return m_background;
-//}
-
-sfp::PhysicsRectangle Levels::getFloor()
+sfp::PhysicsSprite Levels::getFloor()
 {
 	return m_floor;
 }
 
-void Levels::DrawLevels(sf::RenderWindow* window)
+sfp::PhysicsSprite Levels::getExit()
 {
-	window->draw(m_background);
-	window->draw(m_floor);
+	return m_exit;
 }

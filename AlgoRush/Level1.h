@@ -8,25 +8,17 @@
 class Level1 : public Levels
 {
 private:
-	sf::Texture m_backgroundLevel1T;
-	//sf::Texture m_blockBackgroundLevel1T;
-	sf::Texture m_floorLevel1T;
 	sf::Texture m_bookPileT;
-	sf::Texture m_DVDPileT;
 	sf::Texture m_shelfT;
-	sf::Texture m_exitLevel1T;
+	sf::Texture m_keyT;
+	sf::Texture m_DVDPileT;
 
-	sfp::PhysicsRectangle m_blockBackgroundLevel1;
-
-	sfp::PhysicsSprite m_backgroundLevel1;
-	//sfp::PhysicsSprite m_blockBackgroundLevel1;
-	sfp::PhysicsSprite m_floorLevel1;
 	sfp::PhysicsSprite m_bookPile;
-	sfp::PhysicsSprite m_DVDPile;
 	sfp::PhysicsSprite m_shelf;
-	sfp::PhysicsSprite m_exitLevel1;
+	sfp::PhysicsSprite m_key;
+	sfp::PhysicsSprite m_DVDPile;
 public:
 	Level1(sfp::World* world);
 	~Level1();
-	void DrawLevel1(sf::RenderWindow* window);
+	void DrawLevel(sf::RenderWindow* window) override;
 };

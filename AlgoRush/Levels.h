@@ -11,13 +11,19 @@ class Levels
 private:
 	
 protected:
-	sfp::PhysicsRectangle m_background;
-	//sfp::PhysicsSprite m_background;
-	sfp::PhysicsRectangle m_floor;
+	sf::Texture m_backgroundT;
+	sf::Texture m_floorT;
+	sf::Texture m_exitT;
+
+	sfp::PhysicsSprite m_background;
+	sfp::PhysicsSprite m_floor;
+	sfp::PhysicsSprite m_exit;
+
+	sfp::PhysicsRectangle m_blockBackground;
 public:
 	Levels();
-	sfp::PhysicsRectangle getBackground();
-	//sfp::PhysicsSprite getBackground();
-	sfp::PhysicsRectangle getFloor();
-	void DrawLevels(sf::RenderWindow* window);
+	sfp::PhysicsSprite getBackground();
+	sfp::PhysicsSprite getFloor();
+	sfp::PhysicsSprite getExit();
+	virtual void DrawLevel(sf::RenderWindow* window) = 0;
 };
