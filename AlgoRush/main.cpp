@@ -9,9 +9,7 @@
 
 int main()
 {
-    int state = 1;
-    bool levelCreated = false;
-    //Levels* ptr_levels = nullptr;
+    int state = 2;
 
     srand(time(0));
 
@@ -21,37 +19,16 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
+    sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
     window.setFramerateLimit(60);
 
     sf::Event event;
 
+    //Creation of levels
     Level1 level1(&world);
     Level2 level2(&world);
-    levelCreated = true;
 
     while (window.isOpen()) {
-
-        ////Creation of levels;
-        //switch (state)
-        //{
-        //    case 1:
-        //    {
-        //        Level1 level1(&world);
-        //        ptr_levels = &level1;
-        //        levelCreated = true;
-        //        break;
-        //    }
-        //    case 2:
-        //    {
-        //        Level2 level2(&world);
-        //        ptr_levels = &level2;
-        //        levelCreated = true;
-        //        break;
-        //    }
-        //    default:
-        //        break;
-        //}
 
         while (window.pollEvent(event)) {
 
@@ -68,9 +45,8 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            if (state == 1 && levelCreated == true) level1.DrawLevel(&window);
-            else if (state == 2 && levelCreated == true) level2.DrawLevel(&window);
-            //if (state == 1 || state == 2) ptr_levels->DrawLevel(&window);
+            if (state == 1) level1.DrawLevel(&window);
+            else if (state == 2) level2.DrawLevel(&window);
             window.display();
         }
     }

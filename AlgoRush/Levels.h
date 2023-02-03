@@ -22,7 +22,6 @@ protected:
 	sfp::PhysicsRectangle m_blockBackground;
 public:
 	Levels();
-	sfp::PhysicsSprite getBackground();
 	sfp::PhysicsSprite getFloor();
 	sfp::PhysicsSprite getExit();
 	virtual void DrawLevel(sf::RenderWindow* window) = 0;

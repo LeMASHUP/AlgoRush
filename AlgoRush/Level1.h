@@ -2,9 +2,6 @@
 
 #include "Levels.h"
 
-#include <iostream>
-#include <string>
-
 class Level1 : public Levels
 {
 private:
