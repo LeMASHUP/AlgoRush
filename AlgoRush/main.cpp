@@ -4,8 +4,13 @@
 #include <iostream>
 #include <string>
 
+#include "Level1.h"
+#include "Level2.h"
+
 int main()
 {
+    int state = 2;
+
     srand(time(0));
 
     Vector2f gravity(0, 1.0);
@@ -14,11 +19,34 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Not Tetris");
+    sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
+    window.setFramerateLimit(60);
 
     sf::Event event;
 
+    //Creation of levels
+    Level1 level1(&world);
+    Level2 level2(&world);
+
     while (window.isOpen()) {
+
+        switch (state)
+        {
+        case 1:
+        {
+            level2.RemovePhysics(&world);
+            level1.AddPhysics(&world);
+            break;
+        }
+        case 2:
+        {
+            level1.RemovePhysics(&world);
+            level2.AddPhysics(&world);
+            break;
+        }
+        default:
+            break;
+        }
 
         while (window.pollEvent(event)) {
 
@@ -35,7 +63,9 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            //window.draw(player);
+            if (state == 1) level1.DrawLevel(&window);
+            else if (state == 2) level2.DrawLevel(&window);
+            //world.VisualizeAllBounds(window);
             window.display();
         }
     }
