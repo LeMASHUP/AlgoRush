@@ -1,13 +1,13 @@
+#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
 
-class Character
+class Character : public sfp::PhysicsRectangle
 {
 
 private:
 
-	sfp::PhysicsRectangle m_body;
 	sf::Texture m_sprite;
 	sf::Clock m_clock;
 	sf::Time lastTime;
@@ -15,7 +15,7 @@ private:
 
 public:
 
-	Character(sfp::World* world);
+	Character();
 
 	void forward();
 	void backward();
@@ -24,7 +24,6 @@ public:
 	void catchObject();
 	void throwObject();
 	void wait();
-	void draw(sf::RenderWindow* window);
 
 	int getPosX();
 	int getPosY();

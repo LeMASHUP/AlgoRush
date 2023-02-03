@@ -1,3 +1,4 @@
+#pragma once
 #include "Character.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>

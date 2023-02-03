@@ -26,8 +26,9 @@ int main()
     floor.setStatic(true);
     world.AddPhysicsBody(floor);
 
-    Character C(&world);
-    
+    Character C;
+    world.AddPhysicsBody(C);
+   
     while (window.isOpen()) {
         
         while (window.pollEvent(event)) {
@@ -67,7 +68,7 @@ int main()
             window.clear(sf::Color::Black);
             window.draw(floor);
             std::cout << C.getPosX() << " " << C.getPosY() << endl;
-            C.draw(&window);
+            window.draw(C);
             window.display();
         }
     }
