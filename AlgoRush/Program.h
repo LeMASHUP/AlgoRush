@@ -1,3 +1,4 @@
+#include "Character.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
@@ -9,15 +10,18 @@ private:
 
 	sf::Clock m_clock;
 	sf::Time m_lastBlockTime;
+	bool m_play;
 	int m_pc;
 	int m_sizeList;
-	//ExecBlocks m_blocksList[];
-
+	vector<int> m_blocksList;
+	//vector<Execblocs> m_blocksList;
 
 public:
 
-	Program();
+	Program(vector<int> blocksList);
 
-	void execution();
+	void play(Character* character);
+
+	void update(Character* character);
 
 };

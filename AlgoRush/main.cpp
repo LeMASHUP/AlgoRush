@@ -36,6 +36,26 @@ int main()
 
                 window.close();
             }
+
+            if (event.key.code == sf::Keyboard::D) {
+
+                C.forward();
+            }
+
+            if (event.key.code == sf::Keyboard::Q) {
+
+                C.backward();
+            }
+
+            if (event.key.code == sf::Keyboard::Z) {
+
+                C.jumpForward();
+            }
+
+            if (event.key.code == sf::Keyboard::Space) {
+
+                C.jump();
+            }
         }
 
         sf::Time currentTime = clock.getElapsedTime();
@@ -45,12 +65,11 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            //window.draw(player);
             window.draw(floor);
+            std::cout << C.getPosX() << " " << C.getPosY() << endl;
             C.draw(&window);
             window.display();
         }
-        //C.forward();
     }
 
     return 0;

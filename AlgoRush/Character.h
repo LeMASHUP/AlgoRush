@@ -7,8 +7,6 @@ class Character
 
 private:
 
-	int m_posX;
-	int m_posY;
 	sfp::PhysicsRectangle m_body;
 	sf::Texture m_sprite;
 	sf::Clock m_clock;
@@ -27,8 +25,8 @@ public:
 	void throwObject();
 	void wait();
 	void draw(sf::RenderWindow* window);
-	
+
 	int getPosX();
-	int getPosy();
+	int getPosY();
 
 };
