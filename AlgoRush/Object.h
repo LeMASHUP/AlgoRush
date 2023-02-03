@@ -13,5 +13,6 @@ public:
 
 	Object(sf::Texture texture, Vector2f scale);
 	void throwObject();
-	bool iscollide(Object object);
+	bool update(Object object);
+	bool getIsDraw();
 };

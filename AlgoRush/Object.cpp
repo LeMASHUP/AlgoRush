@@ -14,7 +14,7 @@ void Object::throwObject()
 	this->setVelocity(Vector2f(10, 20));
 }
 
-bool Object::iscollide(Object object)
+bool Object::getIsDraw()
 {
-	return this->collideWith(object).hasCollided;
+	return m_draw;
 }
