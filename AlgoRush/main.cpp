@@ -28,15 +28,6 @@ int main()
     Level1 level1(&world);
     Level2 level2(&world);
 
-    //// Ball creation
-    //sfp::PhysicsRectangle ball;
-    //ball.setSize(Vector2f(30, 30));
-    //ball.setCenter(Vector2f(300, 400));
-    //ball.setFillColor(sf::Color(156, 15, 48));
-    //ball.setRestitution(.9f);
-    //ball.applyImpulse(sf::Vector2f(0, -0.5));
-    //world.AddPhysicsBody(ball);
-
     while (window.isOpen()) {
 
         switch (state)
@@ -74,7 +65,6 @@ int main()
             window.clear(sf::Color::Black);
             if (state == 1) level1.DrawLevel(&window);
             else if (state == 2) level2.DrawLevel(&window);
-            //window.draw(ball);
             //world.VisualizeAllBounds(window);
             window.display();
         }
