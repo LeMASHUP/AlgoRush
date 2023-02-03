@@ -4,12 +4,12 @@ Levels::Levels()
 {
 }
 
-sfp::PhysicsSprite Levels::getFloor()
+sfp::PhysicsRectangle Levels::getFloor()
 {
 	return m_floor;
 }
 
-sfp::PhysicsSprite Levels::getExit()
+sfp::PhysicsRectangle Levels::getExit()
 {
 	return m_exit;
 }

@@ -2,17 +2,24 @@
 
 Level1::Level1(sfp::World* world) : Levels()
 {
-	if (!m_backgroundT.loadFromFile("assets/backgroundLevel1.png")) std::cout << "Error in loading level 1 background texture" << std::endl;
-	if (!m_floorT.loadFromFile("assets/floorLevel1.jpg")) std::cout << "Error in loading level 1 floor texture" << std::endl;
-	if (!m_bookPileT.loadFromFile("assets/bookPile.png")) std::cout << "Error in loading book pile texture" << std::endl;
-	if (!m_shelfT.loadFromFile("assets/shelf.png")) std::cout << "Error in loading shelf texture" << std::endl;
-	if (!m_keyT.loadFromFile("assets/key.png")) std::cout << "Error in loading key texture" << std::endl;
-	if (!m_DVDPileT.loadFromFile("assets/DVDPile.png")) std::cout << "Error in loading DVD pile texture" << std::endl;
-	if (!m_exitT.loadFromFile("assets/exitLevel1.png")) std::cout << "Error in loading level 1 exit texture" << std::endl;
+	if (!m_backgroundI.loadFromFile("assets/backgroundLevel1.png")) std::cout << "Error in loading level 1 background texture" << std::endl;
+	if (!m_backgroundT.loadFromImage(m_backgroundI)) std::cout << "Error in loading level 1 background texture" << std::endl;
+	if (!m_floorI.loadFromFile("assets/floorLevel1.jpg")) std::cout << "Error in loading level 1 floor texture" << std::endl;
+	if (!m_floorT.loadFromImage(m_floorI)) std::cout << "Error in loading level 1 floor texture" << std::endl;
+	if (!m_bookPileI.loadFromFile("assets/bookPile.png")) std::cout << "Error in loading book pile texture" << std::endl;
+	if (!m_bookPileT.loadFromImage(m_bookPileI)) std::cout << "Error in loading book pile texture" << std::endl;
+	if (!m_shelfI.loadFromFile("assets/shelf.png")) std::cout << "Error in loading shelf texture" << std::endl;
+	if (!m_shelfT.loadFromImage(m_shelfI)) std::cout << "Error in loading shelf texture" << std::endl;
+	if (!m_keyI.loadFromFile("assets/key.png")) std::cout << "Error in loading key texture" << std::endl;
+	if (!m_keyT.loadFromImage(m_keyI)) std::cout << "Error in loading key texture" << std::endl;
+	if (!m_DVDPileI.loadFromFile("assets/DVDPile.png")) std::cout << "Error in loading DVD pile texture" << std::endl;
+	if (!m_DVDPileT.loadFromImage(m_DVDPileI)) std::cout << "Error in loading DVD pile texture" << std::endl;
+	if (!m_exitI.loadFromFile("assets/exitLevel1.png")) std::cout << "Error in loading level 1 exit texture" << std::endl;
+	if (!m_exitT.loadFromImage(m_exitI)) std::cout << "Error in loading level 1 exit texture" << std::endl;
 	
-	m_background.setScale(Vector2f(2.4, 2.15));
-	m_background.setCenter(Vector2f(0, 0));
-	m_background.setTexture(m_backgroundT);
+	m_background.setSize(Vector2f(1600, 840));
+	m_background.setCenter(Vector2f(800, 250));
+	m_background.setTexture(&m_backgroundT);
 	m_background.setStatic(true);
 
 	m_blockBackground.setSize(Vector2f(1600, 200));
@@ -20,40 +27,35 @@ Level1::Level1(sfp::World* world) : Levels()
 	m_blockBackground.setFillColor(sf::Color(50, 50, 50));
 	m_blockBackground.setStatic(true);
 
-	m_floor.setScale(Vector2f(2.65, 0.08));
-	m_floor.setCenter(Vector2f(0, 687));
-	m_floor.setTexture(m_floorT);
+	m_floor.setSize(Vector2f(1600, 50));
+	m_floor.setCenter(Vector2f(800, 695));
+	m_floor.setTexture(&m_floorT);
 	m_floor.setStatic(true);
-	world->AddPhysicsBody(m_floor);
 
-	m_bookPile.setScale(Vector2f(0.35, 0.35));
-	m_bookPile.setCenter(Vector2f(250, 550));
-	m_bookPile.setTexture(m_bookPileT);
+	m_bookPile.setSize(Vector2f(150, 150));
+	m_bookPile.setCenter(Vector2f(350, 610));
+	m_bookPile.setTexture(&m_bookPileT);
 	m_bookPile.setStatic(true);
-	world->AddPhysicsBody(m_bookPile);
 
-	m_shelf.setScale(Vector2f(0.75, 0.75));
-	m_shelf.setCenter(Vector2f(500, 450));
-	m_shelf.setTexture(m_shelfT);
+	m_shelf.setSize(Vector2f(250, 50));
+	m_shelf.setCenter(Vector2f(600, 375));
+	m_shelf.setTexture(&m_shelfT);
 	m_shelf.setStatic(true);
-	world->AddPhysicsBody(m_shelf);
 
-	m_key.setScale(Vector2f(0.1, 0.1));
-	m_key.setCenter(Vector2f(650, 400));
-	m_key.setTexture(m_keyT);
+	m_key.setSize(Vector2f(75, 75));
+	m_key.setCenter(Vector2f(600, 300));
+	m_key.setTexture(&m_keyT);
 	m_key.setStatic(true);
 
-	m_DVDPile.setScale(Vector2f(0.75, 0.75));
-	m_DVDPile.setCenter(Vector2f(800, 600));
-	m_DVDPile.setTexture(m_DVDPileT);
+	m_DVDPile.setSize(Vector2f(150, 150));
+	m_DVDPile.setCenter(Vector2f(800, 610));
+	m_DVDPile.setTexture(&m_DVDPileT);
 	m_DVDPile.setStatic(true);
-	world->AddPhysicsBody(m_DVDPile);
 
-	m_exit.setScale(Vector2f(0.40, 0.45));
-	m_exit.setCenter(Vector2f(1400, 475));
-	m_exit.setTexture(m_exitT);
+	m_exit.setSize(Vector2f(150, 250));
+	m_exit.setCenter(Vector2f(1400, 545));
+	m_exit.setTexture(&m_exitT);
 	m_exit.setStatic(true);
-	world->AddPhysicsBody(m_exit);
 }
 
 Level1::~Level1()
@@ -70,4 +72,22 @@ void Level1::DrawLevel(sf::RenderWindow* window)
 	window->draw(m_key);
 	window->draw(m_DVDPile);
 	window->draw(m_exit);
+}
+
+void Level1::AddPhysics(sfp::World* world)
+{
+	world->AddPhysicsBody(m_floor);
+	world->AddPhysicsBody(m_bookPile);
+	world->AddPhysicsBody(m_shelf);
+	world->AddPhysicsBody(m_DVDPile);
+	world->AddPhysicsBody(m_exit);
+}
+
+void Level1::RemovePhysics(sfp::World* world)
+{
+	world->RemovePhysicsBody(m_floor);
+	world->RemovePhysicsBody(m_bookPile);
+	world->RemovePhysicsBody(m_shelf);
+	world->RemovePhysicsBody(m_DVDPile);
+	world->RemovePhysicsBody(m_exit);
 }
