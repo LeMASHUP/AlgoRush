@@ -5,9 +5,13 @@
 #include <string>
 
 #include "Character.h"
+#include "Level1.h"
+#include "Level2.h"
 
 int main()
 {
+    int state = 2;
+
     srand(time(0));
 
     Vector2f gravity(0, 1.0);
@@ -16,21 +20,38 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "AlgoRush");
+    Character C;
+    world.AddPhysicsBody(C);
+
+    sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
+    window.setFramerateLimit(60);
 
     sf::Event event;
 
-    sfp::PhysicsRectangle floor;
-    floor.setSize(Vector2f(800, 50));
-    floor.setCenter(Vector2f(400, 575));
-    floor.setStatic(true);
-    world.AddPhysicsBody(floor);
+    //Creation of levels
+    Level1 level1(&world);
+    Level2 level2(&world);
 
-    Character C;
-    world.AddPhysicsBody(C);
-   
     while (window.isOpen()) {
-        
+
+        switch (state)
+        {
+        case 1:
+        {
+            level2.RemovePhysics(&world);
+            level1.AddPhysics(&world);
+            break;
+        }
+        case 2:
+        {
+            level1.RemovePhysics(&world);
+            level2.AddPhysics(&world);
+            break;
+        }
+        default:
+            break;
+        }
+
         while (window.pollEvent(event)) {
 
             if (event.type == sf::Event::Closed) {
@@ -66,9 +87,10 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            window.draw(floor);
-            std::cout << C.getPosX() << " " << C.getPosY() << endl;
             window.draw(C);
+            if (state == 1) level1.DrawLevel(&window);
+            else if (state == 2) level2.DrawLevel(&window);
+            //world.VisualizeAllBounds(window);
             window.display();
         }
     }
