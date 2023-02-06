@@ -8,16 +8,13 @@
 
 class Levels
 {
-private:
-	
 protected:
-	sf::Image m_backgroundI;
-	sf::Image m_floorI;
-	sf::Image m_exitI;
+	// Texture for all levels to load and keep
 	sf::Texture m_backgroundT;
 	sf::Texture m_floorT;
 	sf::Texture m_exitT;
 
+	// Objects for all levels
 	sfp::PhysicsRectangle m_background;
 	sfp::PhysicsRectangle m_floor;
 	sfp::PhysicsRectangle m_exit;

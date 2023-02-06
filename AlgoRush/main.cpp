@@ -26,7 +26,7 @@ int main()
 
     sf::Event event;
 
-    //Creation of levels
+    //Creation of levels and character
     Level1 level1(&world);
     Level2 level2(&world);
     Character character;
@@ -67,26 +67,10 @@ int main()
 
                 window.close();
             }
-
-            if (event.key.code == sf::Keyboard::D) {
-
-                character.forward();
-            }
-
-            if (event.key.code == sf::Keyboard::Q) {
-
-                character.backward();
-            }
-
-            if (event.key.code == sf::Keyboard::Z) {
-
-                character.jumpForward();
-            }
-
-            if (event.key.code == sf::Keyboard::Space) {
-
-                character.jump();
-            }
+            if (event.key.code == sf::Keyboard::D) character.forward();
+            if (event.key.code == sf::Keyboard::Q) character.backward();
+            if (event.key.code == sf::Keyboard::Z) character.jumpForward();
+            if (event.key.code == sf::Keyboard::Space) character.jump();
         }
 
         sf::Time currentTime = clock.getElapsedTime();

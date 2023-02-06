@@ -8,7 +8,6 @@ Character::Character()
 	this->setSize(Vector2f(25, 50));
 	this->setCenter(Vector2f(200, 300));
 	this->setRestitution(0.15f);
-
 }
 
 void Character::forward()
