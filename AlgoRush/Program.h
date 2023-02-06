@@ -11,9 +11,8 @@ private:
 
 	sf::Clock m_clock;
 	sf::Time m_lastBlockTime;
-	bool m_play;
+	bool m_init;
 	int m_pc;
-	int m_sizeList;
 	vector<int> m_blocksList;
 	//vector<Execblocs> m_blocksList;
 
@@ -21,7 +20,7 @@ public:
 
 	Program(vector<int> blocksList);
 
-	void play(Character* character);
+	void init(Character* character);
 
 	void update(Character* character);
 

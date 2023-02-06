@@ -7,7 +7,7 @@ Character::Character()
 {
 	this->setSize(Vector2f(10, 20));
 	this->setCenter(Vector2f(400, 450));
-	this->setRestitution(0.05);
+	this->setRestitution(0.15);
 
 }
 
