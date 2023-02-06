@@ -5,9 +5,9 @@
 
 Character::Character()
 {
-	this->setSize(Vector2f(10, 20));
-	this->setCenter(Vector2f(400, 450));
-	this->setRestitution(0.15);
+	this->setSize(Vector2f(25, 50));
+	this->setCenter(Vector2f(200, 300));
+	this->setRestitution(0.15f);
 
 }
 
@@ -28,7 +28,7 @@ void Character::jump()
 
 void Character::jumpForward()
 {
-	this->setVelocity(Vector2f(0.1, -0.3));
+	this->setVelocity(Vector2f(0.1, -0.6));
 }
 
 void Character::catchObject()
