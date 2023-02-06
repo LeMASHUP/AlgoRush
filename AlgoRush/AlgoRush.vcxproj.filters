@@ -18,6 +18,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+      <ClCompile Include="Program.cpp">
+    </ClCompile>
     <ClCompile Include="Level1.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -29,6 +34,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Program.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="Level1.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>

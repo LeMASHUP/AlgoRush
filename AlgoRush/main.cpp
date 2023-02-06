@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+#include "Character.h"
 #include "Level1.h"
 #include "Level2.h"
 
@@ -18,6 +19,9 @@ int main()
 
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
+
+    Character C;
+    world.AddPhysicsBody(C);
 
     sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
     window.setFramerateLimit(60);
@@ -54,6 +58,26 @@ int main()
 
                 window.close();
             }
+
+            if (event.key.code == sf::Keyboard::D) {
+
+                C.forward();
+            }
+
+            if (event.key.code == sf::Keyboard::Q) {
+
+                C.backward();
+            }
+
+            if (event.key.code == sf::Keyboard::Z) {
+
+                C.jumpForward();
+            }
+
+            if (event.key.code == sf::Keyboard::Space) {
+
+                C.jump();
+            }
         }
 
         sf::Time currentTime = clock.getElapsedTime();
@@ -63,6 +87,7 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
+            window.draw(C);
             if (state == 1) level1.DrawLevel(&window);
             else if (state == 2) level2.DrawLevel(&window);
             //world.VisualizeAllBounds(window);

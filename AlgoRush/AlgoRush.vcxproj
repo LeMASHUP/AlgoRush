@@ -139,10 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Levels.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Program.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Program.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level1.h" />
