@@ -4,13 +4,14 @@
 #include <iostream>
 #include <string>
 
+#include "Menu.h"
 #include "Character.h"
 #include "Level1.h"
 #include "Level2.h"
 
 int main()
 {
-    int state = 1;
+    int state = 0;
     bool levelCreated = false;
 
     srand(time(0));
@@ -27,6 +28,7 @@ int main()
     sf::Event event;
 
     //Creation of levels and character
+    Menu menu;
     Level1 level1(&world);
     Level2 level2(&world);
     Character character;
@@ -80,7 +82,11 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            if (state == 1)
+            if (state == 0)
+            {
+                menu.DrawMenu(&window);
+            }
+            else if (state == 1)
             {
                 level1.DrawLevel(&window);
                 window.draw(character);
