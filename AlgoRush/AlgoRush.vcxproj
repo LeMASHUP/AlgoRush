@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockManager.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Program.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlockManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Program.h" />
   </ItemGroup>
