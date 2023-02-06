@@ -2,7 +2,7 @@
 #include "SFPhysics.h"
 #include <iostream>
 
-class Object : public sfp::PhysicsSprite {
+class Object : public sfp::PhysicsRectangle {
 private:
 
 	sf::Texture m_texture;
@@ -11,7 +11,7 @@ private:
 
 public:
 
-	Object(sf::Texture texture, Vector2f scale);
+	Object(Vector2f scale);
 	void throwObject();
 	bool getIsDraw();
 	void setIsDraw(bool isDraw);

@@ -3,10 +3,13 @@
 #include <iostream>
 #include "Object.h"
 
-Object::Object(sf::Texture texture, Vector2f scale) : m_texture(texture), m_scale(scale), m_draw(true)
+Object::Object(Vector2f scale) : m_scale(scale), m_draw(true)
 {
+	sf::Image image;
+	if (!image.loadFromFile("assets/key.png")) std::cout << "Error in loading character image" << std::endl;
+	if (!m_texture.loadFromImage(image)) std::cout << "Error in loading character texture" << std::endl;
+	this->setTexture(&m_texture);
 	this->setScale(m_scale);
-	this->setTexture(m_texture);
 }
 
 void Object::throwObject()
