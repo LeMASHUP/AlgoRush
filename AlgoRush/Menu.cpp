@@ -83,3 +83,11 @@ void Menu::DrawMenu(sf::RenderWindow* window)
 	window->draw(m_exitButton);
 	window->draw(m_creditsButton);
 }
+
+void Menu::UpdateMenu(sf::RenderWindow* window, sf::Event* event)
+{
+	if (event->type == sf::Event::MouseButtonPressed && m_playButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
+	{
+		
+	}
+}

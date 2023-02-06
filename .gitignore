@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # Assets
 /AlgoRush/assets/
+
+# SFML
+/SFML/
