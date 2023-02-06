@@ -26,5 +26,4 @@ BlocJump::BlocJump()
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
     this->setSize(Vector2f(75, 75));
     this->setTexture(&m_btexture);
-    this->setStatic(true);
 }

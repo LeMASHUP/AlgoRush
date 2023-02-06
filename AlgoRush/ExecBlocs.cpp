@@ -8,6 +8,7 @@
 
 #include "ExecBlocs.h"
 
-ExecBlocs::ExecBlocs() {
-
+ExecBlocs::ExecBlocs()
+{
+	m_iteration = 1;
 }

@@ -6,7 +6,7 @@
 #include <string>
 #include <cstdio>
 
-class ExecBlocs : public sfp::PhysicsRectangle {
+class ExecBlocs : public sf::RectangleShape {
 protected:
 	sf::Texture m_btexture;
 	int m_iteration;

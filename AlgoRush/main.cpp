@@ -89,31 +89,6 @@ int main()
                 window.close();
             }
 
-            if (event.type == sf::Event::MouseButtonPressed && square.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-            {
-                sf::RectangleShape square2(sf::Vector2f(50, 50));
-                square2.setFillColor(sf::Color::Green);
-                square2.setPosition(posx, posy);
-                squares.push_back(square2);
-                posx += 60;
-                std::cout << "Hello World!" << std::endl;
-            }
-
-            if (event.type == sf::Event::MouseButtonPressed && square3.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-            {
-                sf::RectangleShape square4(sf::Vector2f(50, 50));
-                square4.setFillColor(sf::Color::Red);
-                square4.setPosition(posx, posy);
-                squares.push_back(square4);
-                posx += 60;
-                std::cout << "Hello World2!" << std::endl;
-            }
-
-            if (posx > 1575) {
-                posx = 25;
-                posy += 60;
-            }
-
             if (event.key.code == sf::Keyboard::D) character.forward();
             if (event.key.code == sf::Keyboard::Q) character.backward();
             if (event.key.code == sf::Keyboard::Z) character.jumpForward();
@@ -138,10 +113,6 @@ int main()
                 window.draw(character);
             }
             world.VisualizeAllBounds(window);
-            window.draw(square);
-            window.draw(square3);
-            for (const auto& s : squares)
-                window.draw(s);
             window.display();
         }
     }
