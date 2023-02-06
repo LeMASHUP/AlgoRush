@@ -10,7 +10,8 @@
 
 int main()
 {
-    int state = 2;
+    int state = 1;
+    bool levelCreated = false;
 
     srand(time(0));
 
@@ -20,9 +21,6 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    Character C;
-    world.AddPhysicsBody(C);
-
     sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
     window.setFramerateLimit(60);
 
@@ -31,6 +29,7 @@ int main()
     //Creation of levels
     Level1 level1(&world);
     Level2 level2(&world);
+    Character character;
 
     while (window.isOpen()) {
 
@@ -38,15 +37,25 @@ int main()
         {
         case 1:
         {
-            level2.RemovePhysics(&world);
-            level1.AddPhysics(&world);
-            break;
+            if (levelCreated == false)
+            {
+                level2.RemovePhysics(&world);
+                level1.AddPhysics(&world);
+                world.AddPhysicsBody(character);
+                levelCreated = true;
+                break;
+            }
         }
         case 2:
         {
-            level1.RemovePhysics(&world);
-            level2.AddPhysics(&world);
-            break;
+            if (levelCreated == false)
+            {
+                level1.RemovePhysics(&world);
+                level2.AddPhysics(&world);
+                world.AddPhysicsBody(character);
+                levelCreated = true;
+                break;
+            }
         }
         default:
             break;
@@ -61,22 +70,22 @@ int main()
 
             if (event.key.code == sf::Keyboard::D) {
 
-                C.forward();
+                character.forward();
             }
 
             if (event.key.code == sf::Keyboard::Q) {
 
-                C.backward();
+                character.backward();
             }
 
             if (event.key.code == sf::Keyboard::Z) {
 
-                C.jumpForward();
+                character.jumpForward();
             }
 
             if (event.key.code == sf::Keyboard::Space) {
 
-                C.jump();
+                character.jump();
             }
         }
 
@@ -87,10 +96,17 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            window.draw(C);
-            if (state == 1) level1.DrawLevel(&window);
-            else if (state == 2) level2.DrawLevel(&window);
-            //world.VisualizeAllBounds(window);
+            if (state == 1)
+            {
+                level1.DrawLevel(&window);
+                window.draw(character);
+            }
+            else if (state == 2)
+            {
+                level2.DrawLevel(&window);
+                window.draw(character);
+            }
+            world.VisualizeAllBounds(window);
             window.display();
         }
     }
