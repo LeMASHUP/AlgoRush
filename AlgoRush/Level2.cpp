@@ -2,6 +2,15 @@
 
 Level2::Level2(sfp::World* world) : Levels()
 {
+	// Images to load into texture
+	sf::Image m_backgroundI;
+	sf::Image m_floorI;
+	sf::Image m_exitI;
+	sf::Image m_paperPlaneI;
+	sf::Image m_trashCanI;
+	sf::Image m_fireHydrantI;
+
+	// Load and check images and textures
 	if (!m_backgroundI.loadFromFile("assets/backgroundLevel2.jpg")) std::cout << "Error in loading level 2 background texture" << std::endl;
 	if (!m_backgroundT.loadFromImage(m_backgroundI)) std::cout << "Error in loading level 2 background texture" << std::endl;
 	if (!m_floorI.loadFromFile("assets/floorLevel2.jpg")) std::cout << "Error in loading level 2 floor texture" << std::endl;
@@ -15,6 +24,7 @@ Level2::Level2(sfp::World* world) : Levels()
 	if (!m_exitI.loadFromFile("assets/exitLevel2.png")) std::cout << "Error in loading level 2 exit texture" << std::endl;
 	if (!m_exitT.loadFromImage(m_exitI)) std::cout << "Error in loading level 2 exit texture" << std::endl;
 
+	// Settings for objects
 	m_background.setSize(Vector2f(1600, 840));
 	m_background.setCenter(Vector2f(800, 250));
 	m_background.setTexture(&m_backgroundT);

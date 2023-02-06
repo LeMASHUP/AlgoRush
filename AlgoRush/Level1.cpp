@@ -2,6 +2,16 @@
 
 Level1::Level1(sfp::World* world) : Levels()
 {
+	// Images to load into texture
+	sf::Image m_backgroundI;
+	sf::Image m_floorI;
+	sf::Image m_exitI;
+	sf::Image m_bookPileI;
+	sf::Image m_shelfI;
+	sf::Image m_keyI;
+	sf::Image m_DVDPileI;
+
+	// Load and check images and textures
 	if (!m_backgroundI.loadFromFile("assets/backgroundLevel1.png")) std::cout << "Error in loading level 1 background texture" << std::endl;
 	if (!m_backgroundT.loadFromImage(m_backgroundI)) std::cout << "Error in loading level 1 background texture" << std::endl;
 	if (!m_floorI.loadFromFile("assets/floorLevel1.jpg")) std::cout << "Error in loading level 1 floor texture" << std::endl;
@@ -17,6 +27,7 @@ Level1::Level1(sfp::World* world) : Levels()
 	if (!m_exitI.loadFromFile("assets/exitLevel1.png")) std::cout << "Error in loading level 1 exit texture" << std::endl;
 	if (!m_exitT.loadFromImage(m_exitI)) std::cout << "Error in loading level 1 exit texture" << std::endl;
 	
+	// Settings for objects
 	m_background.setSize(Vector2f(1600, 840));
 	m_background.setCenter(Vector2f(800, 250));
 	m_background.setTexture(&m_backgroundT);

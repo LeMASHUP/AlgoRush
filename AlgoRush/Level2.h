@@ -5,13 +5,12 @@
 class Level2 : public Levels
 {
 private:
-	sf::Image m_paperPlaneI;
-	sf::Image m_trashCanI;
-	sf::Image m_fireHydrantI;
+	// Level 2 textures to load and keep
 	sf::Texture m_paperPlaneT;
 	sf::Texture m_trashCanT;
 	sf::Texture m_fireHydrantT;
 
+	// Level 2 objects
 	sfp::PhysicsRectangle m_paperPlane;
 	sfp::PhysicsRectangle m_trashCan;
 	sfp::PhysicsRectangle m_fireHydrant;

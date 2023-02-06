@@ -5,15 +5,13 @@
 class Level1 : public Levels
 {
 private:
-	sf::Image m_bookPileI;
-	sf::Image m_shelfI;
-	sf::Image m_keyI;
-	sf::Image m_DVDPileI;
+	// Level 1 textures to load and keep
 	sf::Texture m_bookPileT;
 	sf::Texture m_shelfT;
 	sf::Texture m_keyT;
 	sf::Texture m_DVDPileT;
 
+	// Level 1 objects
 	sfp::PhysicsRectangle m_bookPile;
 	sfp::PhysicsRectangle m_shelf;
 	sfp::PhysicsRectangle m_key;
