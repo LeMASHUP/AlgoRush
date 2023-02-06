@@ -18,3 +18,8 @@ bool Object::getIsDraw()
 {
 	return m_draw;
 }
+
+void Object::setIsDraw(bool isDraw)
+{
+	m_draw = isDraw;
+}
