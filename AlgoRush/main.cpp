@@ -1,5 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
+#include "BlockManager.h"
 
 #include <iostream>
 #include <string>
@@ -48,12 +49,13 @@ int main()
     std::vector<sf::RectangleShape> squares;
 
     //Creation of levels and character
-    Level1 level1(&world);
-    Level2 level2(&world);
+    //Level1 level1(&world);
+    //Level2 level2(&world);
     Character character;
+    BlockManager BlockManager(&world);
 
     while (window.isOpen()) {
-
+        /*
         switch (state)
         {
         case 1:
@@ -81,6 +83,7 @@ int main()
         default:
             break;
         }
+        */
 
         while (window.pollEvent(event)) {
 
@@ -93,6 +96,8 @@ int main()
             if (event.key.code == sf::Keyboard::Q) character.backward();
             if (event.key.code == sf::Keyboard::Z) character.jumpForward();
             if (event.key.code == sf::Keyboard::Space) character.jump();
+
+            BlockManager.update(&event);
         }
 
         sf::Time currentTime = clock.getElapsedTime();
@@ -102,7 +107,7 @@ int main()
             lastTime = currentTime;
             world.UpdatePhysics(elapsedMs);
             window.clear(sf::Color::Black);
-            if (state == 1)
+           /* if (state == 1)
             {
                 level1.DrawLevel(&window);
                 window.draw(character);
@@ -112,6 +117,8 @@ int main()
                 level2.DrawLevel(&window);
                 window.draw(character);
             }
+            */
+            BlockManager.draw(&window);
             world.VisualizeAllBounds(window);
             window.display();
         }

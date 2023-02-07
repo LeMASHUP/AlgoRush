@@ -1,4 +1,6 @@
-#include "SFML/Graphics.hpp"
+#pragma once
+
+#include <SFML/Graphics.hpp>
 #include "SFPhysics.h"
 #include <windows.h>
 
@@ -6,7 +8,8 @@
 #include <string>
 #include <cstdio>
 
-class ExecBlocs : public sf::RectangleShape {
+class ExecBlocs : public sf::RectangleShape
+{
 protected:
 	sf::Texture m_btexture;
 	int m_iteration;

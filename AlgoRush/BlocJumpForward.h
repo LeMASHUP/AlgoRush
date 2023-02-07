@@ -9,7 +9,8 @@
 #include "Execblocs.h"
 
 
-class BlocJumpForward : public ExecBlocs {
+class BlocJumpForward : public ExecBlocs 
+{
 public:
 	void action() override;
 	BlocJumpForward();

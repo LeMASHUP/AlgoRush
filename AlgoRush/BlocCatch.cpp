@@ -19,13 +19,13 @@ void BlocCatch::action(/*Character* player, Object* object*/) {
     //if (player.collideWith(/*object*/).hasCollided)
     //player.catch();
     //object.setIsDraw(false);
+    std::cout << "un caractère" << std::endl;
 }
 
 BlocCatch::BlocCatch()
 {
-    m_iteration = 1;
     sf::Image image;
-    if (!image.loadFromFile("assets/key.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
     this->setSize(Vector2f(75, 75));
     this->setTexture(&m_btexture);
