@@ -32,7 +32,7 @@ int main()
     sf::Clock clock;
     sf::Time lastTime = clock.getElapsedTime();
 
-    sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush");
+    sf::RenderWindow window(sf::VideoMode(1600, 920), "AlgoRush V0.4 (Timeline Demo)");
     window.setFramerateLimit(60);
 
     sf::Event event;
