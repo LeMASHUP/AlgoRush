@@ -20,4 +20,6 @@ public:
 	ExecBlocs();
 	void draw(sf:: RenderWindow* window);
 	sf::Text& const getTextIteration();
+	void setIteration(int iteration);
+	int& const getIteration();
 };

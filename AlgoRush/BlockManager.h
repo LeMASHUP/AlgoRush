@@ -22,6 +22,7 @@ private:
 	//m_blocTexture[0] correspond au textures de BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
 	sf::Texture m_blocTexture[8];
 	vector<ExecBlocs*> m_blockInstructions;
+	int m_select;
 public:
 	BlockManager(sfp::World* world);
 	void update(sf::Event* event);

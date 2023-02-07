@@ -28,3 +28,13 @@ sf::Text& const ExecBlocs::getTextIteration()
 {
 	return m_textIteration;
 }
+
+void ExecBlocs::setIteration(int iteration)
+{
+	m_iteration = iteration;
+}
+
+int& const ExecBlocs::getIteration()
+{
+	return m_iteration;
+}
