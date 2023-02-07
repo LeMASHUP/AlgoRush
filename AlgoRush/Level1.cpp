@@ -73,7 +73,7 @@ Level1::~Level1()
 {
 }
 
-void Level1::DrawLevel(sf::RenderWindow* window)
+void Level1::drawLevel(sf::RenderWindow* window)
 {
 	window->draw(m_background);
 	window->draw(m_blockBackground);
@@ -85,7 +85,7 @@ void Level1::DrawLevel(sf::RenderWindow* window)
 	window->draw(m_exit);
 }
 
-void Level1::AddPhysics(sfp::World* world)
+void Level1::addPhysics(sfp::World* world)
 {
 	world->AddPhysicsBody(m_floor);
 	world->AddPhysicsBody(m_bookPile);
@@ -94,7 +94,7 @@ void Level1::AddPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_exit);
 }
 
-void Level1::RemovePhysics(sfp::World* world)
+void Level1::removePhysics(sfp::World* world)
 {
 	world->RemovePhysicsBody(m_floor);
 	world->RemovePhysicsBody(m_bookPile);

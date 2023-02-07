@@ -17,7 +17,9 @@ private:
 public:
 	Level2(sfp::World* world);
 	~Level2();
-	void DrawLevel(sf::RenderWindow* window) override;
-	void AddPhysics(sfp::World* world) override;
-	void RemovePhysics(sfp::World* world) override;
+	void drawLevel(sf::RenderWindow* window) override;
+	void addPhysics(sfp::World* world) override;
+	void removePhysics(sfp::World* world) override;
+	sfp::PhysicsRectangle& getTrashCan();
+	sfp::PhysicsRectangle& getFireHydrant();
 };

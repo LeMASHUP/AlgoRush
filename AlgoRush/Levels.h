@@ -21,9 +21,7 @@ protected:
 	sfp::PhysicsRectangle m_blockBackground;
 public:
 	Levels();
-	sfp::PhysicsRectangle getFloor();
-	sfp::PhysicsRectangle getExit();
-	virtual void DrawLevel(sf::RenderWindow* window) = 0;
-	virtual void AddPhysics(sfp::World* world) = 0;
-	virtual void RemovePhysics(sfp::World* world) = 0;
+	virtual void drawLevel(sf::RenderWindow* window) = 0;
+	virtual void addPhysics(sfp::World* world) = 0;
+	virtual void removePhysics(sfp::World* world) = 0;
 };

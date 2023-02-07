@@ -7,12 +7,13 @@
 #include "Menu.h"
 #include "Credits.h"
 #include "Character.h"
+#include "Ennemies.h"
 #include "Level1.h"
 #include "Level2.h"
 
 int main()
 {
-	int state = 0;
+	int state = 2;
 	bool levelCreated = false;
 
 	srand(time(0));
@@ -34,6 +35,7 @@ int main()
 	Level1 level1(&world);
 	Level2 level2(&world);
 	Character character;
+	Ennemies ennemy;	
 
 	while (window.isOpen()) {
 
@@ -43,9 +45,10 @@ int main()
 		{
 			if (levelCreated == false)
 			{
-				level2.RemovePhysics(&world);
-				level1.AddPhysics(&world);
+				level2.removePhysics(&world);
+				level1.addPhysics(&world);
 				world.AddPhysicsBody(character);
+				ennemy.removePhysics(&world);
 				levelCreated = true;
 				break;
 			}
@@ -54,12 +57,15 @@ int main()
 		{
 			if (levelCreated == false)
 			{
-				level1.RemovePhysics(&world);
-				level2.AddPhysics(&world);
+				level1.removePhysics(&world);
+				level2.addPhysics(&world);
 				world.AddPhysicsBody(character);
+				ennemy.initEnnemies(650, 200);
+				ennemy.addPhysics(&world);
 				levelCreated = true;
 				break;
 			}
+			ennemy.updateEnnemies(&world, &character, &level2);
 		}
 		default:
 			break;
@@ -71,10 +77,10 @@ int main()
 
 				window.close();
 			}
-			if (menu.UpdateMenu(&window, &event, state))
+			if (menu.updateMenu(&window, &event, state))
 				continue;
 
-			if (credits.UpdateCredits(&window, &event, state))
+			if (credits.updateCredits(&window, &event, state))
 				continue;
 
 			if (event.key.code == sf::Keyboard::D) character.forward();
@@ -94,31 +100,31 @@ int main()
 			{
 			case 0:
 			{
-				menu.DrawMenu(&window);
+				menu.drawMenu(&window);
 				break;
 			}
 			case 1:
 			{
-				level1.DrawLevel(&window);
+				level1.drawLevel(&window);
 				window.draw(character);
 				break;
 			}
 			case 2:
 			{
-				level2.DrawLevel(&window);
+				level2.drawLevel(&window);
 				window.draw(character);
+				ennemy.drawEnnemies(&window);
 				break;
 			}
 			case 6:
 			{
-				credits.DrawCredits(&window);
+				credits.drawCredits(&window);
 				break;
 			}
 			default:
 				break;
 			}
-			std::cout << state << std::endl;
-			world.VisualizeAllBounds(window);
+			//world.VisualizeAllBounds(window);
 			window.display();
 		}
 	}

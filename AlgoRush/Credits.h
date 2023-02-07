@@ -31,7 +31,7 @@ private:
 public:
 	Credits();
 	~Credits();
-	void DrawCredits(sf::RenderWindow* window);
-	bool UpdateCredits(sf::RenderWindow* window, sf::Event* event, int& state);
+	void drawCredits(sf::RenderWindow* window);
+	bool updateCredits(sf::RenderWindow* window, sf::Event* event, int& state);
 };
 
