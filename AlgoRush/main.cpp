@@ -10,10 +10,11 @@
 #include "Ennemies.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Victory.h"
 
 int main()
 {
-	int state = 2;
+	int state = 4;
 	bool levelCreated = false;
 
 	srand(time(0));
@@ -35,12 +36,21 @@ int main()
 	Level1 level1(&world);
 	Level2 level2(&world);
 	Character character;
-	Ennemies ennemy;	
+	Ennemies ennemy;
+	Victory victory;
 
 	while (window.isOpen()) {
 
 		switch (state)
 		{
+		case 0:
+		{
+			level1.removePhysics(&world);
+			level2.removePhysics(&world);
+			ennemy.removePhysics(&world);
+			world.RemovePhysicsBody(character);
+			break;
+		}
 		case 1:
 		{
 			if (levelCreated == false)
@@ -67,6 +77,11 @@ int main()
 			}
 			ennemy.updateEnnemies(&world, &character, &level2);
 		}
+		case 4:
+		{
+			victory.updateVictory(&window, &event, state);
+			break;
+		}
 		default:
 			break;
 		}
@@ -77,12 +92,33 @@ int main()
 
 				window.close();
 			}
-			if (menu.updateMenu(&window, &event, state))
-				continue;
 
-			if (credits.updateCredits(&window, &event, state))
-				continue;
+			switch (state)
+			{
+			case 0:
+			{
+				if (menu.updateMenu(&window, &event, state)) continue;
+				break;
+			}
+			case 4:
+			{
+				if (victory.updateVictory(&window, &event, state)) continue;
+				break;
+			}
+			case 6:
+			{
+				if (credits.updateCredits(&window, &event, state)) continue;
+			}
+			default:
+				break;
+			}
+			//if (menu.updateMenu(&window, &event, state))
+			//	continue;
 
+			//if (credits.updateCredits(&window, &event, state))
+			//	continue;
+
+			//if (victory.updateVictory(&window, &event, state)) continue;
 			if (event.key.code == sf::Keyboard::D) character.forward();
 			if (event.key.code == sf::Keyboard::Q) character.backward();
 			if (event.key.code == sf::Keyboard::Z) character.jumpForward();
@@ -114,6 +150,11 @@ int main()
 				level2.drawLevel(&window);
 				window.draw(character);
 				ennemy.drawEnnemies(&window);
+				break;
+			}
+			case 4:
+			{
+				victory.drawVictory(&window);
 				break;
 			}
 			case 6:

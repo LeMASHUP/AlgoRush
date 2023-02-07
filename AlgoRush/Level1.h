@@ -5,6 +5,9 @@
 class Level1 : public Levels
 {
 private:
+	sf::Time m_level1ElapsedTime;
+	int m_level1Tries;
+
 	// Level 1 textures to load and keep
 	sf::Texture m_bookPileT;
 	sf::Texture m_shelfT;
