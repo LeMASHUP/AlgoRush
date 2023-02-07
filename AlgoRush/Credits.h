@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-class Menu
+class Credits
 {
 private:
 	// Loading font for texts
@@ -14,25 +14,24 @@ private:
 
 	// Text objects
 	sf::Text m_gameName;
-	sf::Text m_projectName;
+	sf::Text m_groupName;
 
 	// Logos textures
 	sf::Texture m_lahordeLogoT;
 	sf::Texture m_CILogoT;
-	sf::Texture m_playButtonT;
 	sf::Texture m_exitButtonT;
-	sf::Texture m_creditsButtonT;
+	sf::Texture m_returnMenuButtonT;
 
 	// Objects
 	sf::RectangleShape m_backgroundMenu;
 	sf::RectangleShape m_lahordeLogo;
 	sf::RectangleShape m_CILogo;
-	sf::RectangleShape m_playButton;
 	sf::RectangleShape m_exitButton;
-	sf::RectangleShape m_creditsButton;
+	sf::RectangleShape m_returnMenuButton;
 public:
-	Menu();
-	~Menu();
-	void DrawMenu(sf::RenderWindow* window);
-	bool UpdateMenu(sf::RenderWindow* window, sf::Event* event, int& state);
+	Credits();
+	~Credits();
+	void DrawCredits(sf::RenderWindow* window);
+	bool UpdateCredits(sf::RenderWindow* window, sf::Event* event, int& state);
 };
+
