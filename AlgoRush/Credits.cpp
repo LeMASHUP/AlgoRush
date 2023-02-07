@@ -62,7 +62,7 @@ Credits::~Credits()
 {
 }
 
-void Credits::DrawCredits(sf::RenderWindow* window)
+void Credits::drawCredits(sf::RenderWindow* window)
 {
 	window->draw(m_backgroundMenu);
 	window->draw(m_lahordeLogo);
@@ -73,7 +73,7 @@ void Credits::DrawCredits(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool Credits::UpdateCredits(sf::RenderWindow* window, sf::Event* event, int& state)
+bool Credits::updateCredits(sf::RenderWindow* window, sf::Event* event, int& state)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_exitButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{

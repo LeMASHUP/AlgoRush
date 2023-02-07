@@ -33,6 +33,6 @@ private:
 public:
 	Menu();
 	~Menu();
-	void DrawMenu(sf::RenderWindow* window);
-	bool UpdateMenu(sf::RenderWindow* window, sf::Event* event, int& state);
+	void drawMenu(sf::RenderWindow* window);
+	bool updateMenu(sf::RenderWindow* window, sf::Event* event, int& state);
 };
