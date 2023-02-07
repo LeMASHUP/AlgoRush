@@ -69,7 +69,7 @@ int main()
 
                 window.close();
             }
-            menu.UpdateMenu(&window, &event);
+            menu.UpdateMenu(&window, &event, &state);
             if (event.key.code == sf::Keyboard::D) character.forward();
             if (event.key.code == sf::Keyboard::Q) character.backward();
             if (event.key.code == sf::Keyboard::Z) character.jumpForward();

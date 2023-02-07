@@ -32,5 +32,5 @@ public:
 	Menu();
 	~Menu();
 	void DrawMenu(sf::RenderWindow* window);
-	void UpdateMenu(sf::RenderWindow* window, sf::Event* event);
+	void UpdateMenu(sf::RenderWindow* window, sf::Event* event, int* state);
 };
