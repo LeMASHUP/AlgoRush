@@ -13,7 +13,11 @@ class ExecBlocs : public sf::RectangleShape
 protected:
 	sf::Texture m_btexture;
 	int m_iteration;
+	sf::Text m_textIteration;
+	sf::Font m_font;
 public:
 	virtual void action() = 0;
 	ExecBlocs();
+	void draw(sf:: RenderWindow* window);
+	sf::Text& const getTextIteration();
 };

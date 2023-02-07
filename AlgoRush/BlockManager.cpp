@@ -74,7 +74,7 @@ void BlockManager::update(sf::Event* event)
                       std::cout << "Delete" << std::endl;
                       delete m_blockInstructions.back();
                       m_blockInstructions.pop_back();
-                      std::cout << "Machin" << std::endl;
+                      std::cout << "Deleted" << std::endl;
                       break;
                   }
                   default: 
@@ -83,12 +83,12 @@ void BlockManager::update(sf::Event* event)
                   }
                 }
             }
-        }    
-    }
-    if (event->key.code == sf::Keyboard::Enter) {
+        }
         for (int i = 0; i < m_blockInstructions.size(); i++) {
             if (m_blockInstructions.at(i)->getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y)) {
                 std::cout << "Modified" << std::endl;
+
+                break;
             }
         }
     }
@@ -101,6 +101,7 @@ void BlockManager::draw(sf::RenderWindow* window)
     }
 
     for (int i = 0; i < m_blockInstructions.size(); i++) {
-        window->draw(*m_blockInstructions.at(i));
+        m_blockInstructions.at(i)->getTextIteration().setPosition(m_blockInstructions.at(i)->getPosition().x, m_blockInstructions.at(i)->getPosition().y);
+        m_blockInstructions.at(i)->draw(window);
     }
 }
