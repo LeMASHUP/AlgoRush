@@ -65,7 +65,7 @@ Level2::~Level2()
 {
 }
 
-void Level2::DrawLevel(sf::RenderWindow* window)
+void Level2::drawLevel(sf::RenderWindow* window)
 {
 	window->draw(m_background);
 	window->draw(m_blockBackground);
@@ -76,7 +76,7 @@ void Level2::DrawLevel(sf::RenderWindow* window)
 	window->draw(m_exit);
 }
 
-void Level2::AddPhysics(sfp::World* world)
+void Level2::addPhysics(sfp::World* world)
 {
 	world->AddPhysicsBody(m_floor);
 	world->AddPhysicsBody(m_trashCan);
@@ -84,10 +84,20 @@ void Level2::AddPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_exit);
 }
 
-void Level2::RemovePhysics(sfp::World* world)
+void Level2::removePhysics(sfp::World* world)
 {
 	world->RemovePhysicsBody(m_floor);
 	world->RemovePhysicsBody(m_trashCan);
 	world->RemovePhysicsBody(m_fireHydrant);
 	world->RemovePhysicsBody(m_exit);
+}
+
+sfp::PhysicsRectangle& Level2::getTrashCan()
+{
+	return m_trashCan;
+}
+
+sfp::PhysicsRectangle& Level2::getFireHydrant()
+{
+	return m_fireHydrant;
 }

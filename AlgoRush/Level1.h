@@ -19,7 +19,7 @@ private:
 public:
 	Level1(sfp::World* world);
 	~Level1();
-	void DrawLevel(sf::RenderWindow* window) override;
-	void AddPhysics(sfp::World* world) override;
-	void RemovePhysics(sfp::World* world) override;
+	void drawLevel(sf::RenderWindow* window) override;
+	void addPhysics(sfp::World* world) override;
+	void removePhysics(sfp::World* world) override;
 };
