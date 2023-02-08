@@ -8,8 +8,10 @@ class Character : public sfp::PhysicsRectangle
 private:
 	sf::Texture m_sprite;
 	sf::Clock m_clock;
+	bool getObject;
 	sf::Time lastTime;
 	bool m_isAlive;
+  
 public:
 	Character();
 	void forward();
