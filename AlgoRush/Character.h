@@ -6,7 +6,7 @@
 class Character : public sfp::PhysicsRectangle
 {
 private:
-	sf::Texture m_sprite;
+	sf::Texture m_characterT;
 	sf::Clock m_clock;
 	bool getObject;
 	sf::Time lastTime;
