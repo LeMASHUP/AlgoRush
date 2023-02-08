@@ -13,12 +13,11 @@ private:
 	sf::Time m_lastBlockTime;
 	bool m_init;
 	int m_pc;
-	vector<int> m_blocksList;
-	//vector<Execblocs> m_blocksList;
+	//vector<ExecBlocs> m_blocksList;
 
 public:
 
-	Program(vector<int> blocksList);
+	Program(/*vector<ExecBlocs*> blocksList*/);
 
 	void init(Character* character);
 

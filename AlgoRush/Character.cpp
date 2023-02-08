@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character() : m_isAlive(true)
+Character::Character() : m_isAlive(true), getObject(false)
 {
 	this->setSize(Vector2f(25, 50));
 	this->setCenter(Vector2f(200, 300));
@@ -29,12 +29,12 @@ void Character::jumpForward()
 
 void Character::catchObject()
 {
-
+	getObject = true;
 }
 
 void Character::throwObject()
 {
-
+	getObject = false;
 }
 
 void Character::wait()

@@ -1,8 +1,11 @@
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
+#include "BlockManager.h"
 
 #include <iostream>
 #include <string>
+#include <windows.h>
+#include <cstdio>
 
 #include "Menu.h"
 #include "Credits.h"
@@ -11,6 +14,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Victory.h"
+
 
 int main()
 {
@@ -39,6 +43,7 @@ int main()
 	Character character;
 	Ennemies ennemy;
 	Victory victory;
+  BlockManager BlockManager(&world);
 
 	while (window.isOpen()) {
 
@@ -115,6 +120,8 @@ int main()
 			if (event.key.code == sf::Keyboard::Q) character.backward();
 			if (event.key.code == sf::Keyboard::Z) character.jumpForward();
 			if (event.key.code == sf::Keyboard::Space) character.jump();
+      
+      BlockManager.update(&event);
 		}
 
 		sf::Time currentTime = clock.getElapsedTime();
@@ -157,6 +164,7 @@ int main()
 			default:
 				break;
 			}
+      BlockManager.draw(&window);
 			//world.VisualizeAllBounds(window);
 			window.display();
 		}
