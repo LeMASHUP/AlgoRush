@@ -71,6 +71,7 @@ int main()
 
             if (event.key.code == sf::Keyboard::Z) {
 
+
                 C.jumpForward();
             }
 

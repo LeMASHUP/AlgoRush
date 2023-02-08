@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
 
-Character::Character()
+Character::Character() : getObject(false)
 {
 	this->setSize(Vector2f(10, 20));
 	this->setCenter(Vector2f(400, 450));
@@ -33,12 +33,12 @@ void Character::jumpForward()
 
 void Character::catchObject()
 {
-
+	getObject = true;
 }
 
 void Character::throwObject()
 {
-
+	getObject = false;
 }
 
 void Character::wait()

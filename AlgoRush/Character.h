@@ -10,7 +10,8 @@ private:
 
 	sf::Texture m_sprite;
 	sf::Clock m_clock;
-	sf::Time lastTime;
+	bool getObject;
+	
 	
 
 public:
