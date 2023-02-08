@@ -1,5 +1,6 @@
 #include "Victory.h"
 
+
 Victory::Victory()
 {
 	// Images to load into texture
@@ -27,19 +28,19 @@ Victory::Victory()
 	m_victoryText.setStyle(sf::Text::Bold);
 	m_victoryText.setPosition(Vector2f(500, 150));
 
-	m_levelElapsedTime.setFont(m_font);
-	m_levelElapsedTime.setString("Elapsed time on level * : *");
-	m_levelElapsedTime.setCharacterSize(40);
-	m_levelElapsedTime.setFillColor(Color::Red);
-	m_levelElapsedTime.setStyle(sf::Text::Bold);
-	m_levelElapsedTime.setPosition(Vector2f(200, 450));
+	m_levelElapsedTimeText.setFont(m_font);
+	m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
+	m_levelElapsedTimeText.setCharacterSize(40);
+	m_levelElapsedTimeText.setFillColor(Color::Red);
+	m_levelElapsedTimeText.setStyle(sf::Text::Bold);
+	m_levelElapsedTimeText.setPosition(Vector2f(200, 450));
 
-	m_levelTries.setFont(m_font);
-	m_levelTries.setString("Number of tries on level * : *");
-	m_levelTries.setCharacterSize(40);
-	m_levelTries.setFillColor(Color::Red);
-	m_levelTries.setStyle(sf::Text::Bold);
-	m_levelTries.setPosition(Vector2f(200, 550));
+	m_levelTriesText.setFont(m_font);
+	m_levelTriesText.setString(m_levelTriesString);
+	m_levelTriesText.setCharacterSize(40);
+	m_levelTriesText.setFillColor(Color::Red);
+	m_levelTriesText.setStyle(sf::Text::Bold);
+	m_levelTriesText.setPosition(Vector2f(200, 550));
 
 	m_continueButton.setSize(Vector2f(225, 75));
 	m_continueButton.setTexture(&m_continueButtonT);
@@ -68,19 +69,18 @@ void Victory::drawVictory(sf::RenderWindow* window)
 {
 	window->draw(m_victoryBackground);
 	window->draw(m_victoryText);
-	window->draw(m_levelElapsedTime);
-	window->draw(m_levelTries);
+	window->draw(m_levelElapsedTimeText);
+	window->draw(m_levelTriesText);
 	window->draw(m_continueButton);
 	window->draw(m_exitButton);
 	window->draw(m_returnMenuButton);
 }
 
-bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state)
+bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState)
 {
-	// keep state n-1
 	if (event->type == sf::Event::MouseButtonPressed && m_continueButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
-		state += 1;
+		state = previousLevelState + 1;
 		return true;
 	}
 	if (event->type == sf::Event::MouseButtonPressed && m_exitButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
@@ -94,4 +94,18 @@ bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& sta
 		return true;
 	}
 	return false;
+}
+
+void Victory::setStringVariables(int& previousLevelState, Level1* level1, Level2* level2)
+{
+	if (previousLevelState == 1)
+	{
+		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
+	}
+	else if (previousLevelState == 2)
+	{
+		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsElapsedTime());
+		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsTries());
+	}
 }

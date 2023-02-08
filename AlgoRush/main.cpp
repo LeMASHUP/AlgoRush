@@ -14,7 +14,8 @@
 
 int main()
 {
-	int state = 4;
+	int state = 0;
+	int previousLevelState = 0;
 	bool levelCreated = false;
 
 	srand(time(0));
@@ -59,6 +60,7 @@ int main()
 				level1.addPhysics(&world);
 				world.AddPhysicsBody(character);
 				ennemy.removePhysics(&world);
+				previousLevelState = 1;
 				levelCreated = true;
 				break;
 			}
@@ -72,15 +74,11 @@ int main()
 				world.AddPhysicsBody(character);
 				ennemy.initEnnemies(650, 200);
 				ennemy.addPhysics(&world);
+				previousLevelState = 2;
 				levelCreated = true;
 				break;
 			}
 			ennemy.updateEnnemies(&world, &character, &level2);
-		}
-		case 4:
-		{
-			victory.updateVictory(&window, &event, state);
-			break;
 		}
 		default:
 			break;
@@ -102,7 +100,7 @@ int main()
 			}
 			case 4:
 			{
-				if (victory.updateVictory(&window, &event, state)) continue;
+				if (victory.updateVictory(&window, &event, state, previousLevelState)) continue;
 				break;
 			}
 			case 6:
@@ -112,13 +110,7 @@ int main()
 			default:
 				break;
 			}
-			//if (menu.updateMenu(&window, &event, state))
-			//	continue;
 
-			//if (credits.updateCredits(&window, &event, state))
-			//	continue;
-
-			//if (victory.updateVictory(&window, &event, state)) continue;
 			if (event.key.code == sf::Keyboard::D) character.forward();
 			if (event.key.code == sf::Keyboard::Q) character.backward();
 			if (event.key.code == sf::Keyboard::Z) character.jumpForward();

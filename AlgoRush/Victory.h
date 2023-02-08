@@ -3,6 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
 
+#include "Level1.h"
+#include "Level2.h"
+
 #include <iostream>
 #include <string>
 
@@ -14,8 +17,12 @@ private:
 
 	// Text objects
 	sf::Text m_victoryText;
-	sf::Text m_levelElapsedTime;
-	sf::Text m_levelTries;
+	sf::Text m_levelElapsedTimeText;
+	sf::Text m_levelTriesText;
+
+	// String variable to put into sf::Text::toString()
+	string m_levelElapsedTimeString;
+	string m_levelTriesString;
 
 	// Logos textures
 	sf::Texture m_continueButtonT;
@@ -31,5 +38,6 @@ public:
 	Victory();
 	~Victory();
 	void drawVictory(sf::RenderWindow* window);
-	bool updateVictory(sf::RenderWindow* window, sf::Event* event, int& state);
+	bool updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState);
+	void setStringVariables(int& previousLevelState, Level1* level1, Level2* level2);
 };
