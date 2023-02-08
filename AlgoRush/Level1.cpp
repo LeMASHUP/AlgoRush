@@ -73,6 +73,11 @@ Level1::~Level1()
 {
 }
 
+void Level1::initLevels()
+{
+	m_levelsBeginTime = levelsClock.getElapsedTime();
+}
+
 void Level1::drawLevel(sf::RenderWindow* window)
 {
 	window->draw(m_background);
@@ -101,4 +106,26 @@ void Level1::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_shelf);
 	world->RemovePhysicsBody(m_DVDPile);
 	world->RemovePhysicsBody(m_exit);
+}
+
+void Level1::levelsElapsedTime()
+{
+	m_levelsCurrentTime = levelsClock.getElapsedTime();
+	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asMilliseconds();
+}
+
+void Level1::levelsTries(bool addTry)
+{
+	if (addTry) m_levelsTries += 1;
+	else m_levelsTries = 0;
+}
+
+double Level1::getLevelsElapsedTime()
+{
+	return m_levelsElapsedTime;
+}
+
+int Level1::getLevelsTries()
+{
+	return m_levelsTries;
 }

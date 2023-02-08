@@ -13,11 +13,13 @@
 #include "Ennemies.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Victory.h"
 
 
 int main()
 {
-	int state = 2;
+	int state = 0;
+	int previousLevelState = 0;
 	bool levelCreated = false;
 
 	srand(time(0));
@@ -40,12 +42,21 @@ int main()
 	Level2 level2(&world);
 	Character character;
 	Ennemies ennemy;
+	Victory victory;
   BlockManager BlockManager(&world);
 
 	while (window.isOpen()) {
 
 		switch (state)
 		{
+		case 0:
+		{
+			level1.removePhysics(&world);
+			level2.removePhysics(&world);
+			ennemy.removePhysics(&world);
+			world.RemovePhysicsBody(character);
+			break;
+		}
 		case 1:
 		{
 			if (levelCreated == false)
@@ -54,6 +65,7 @@ int main()
 				level1.addPhysics(&world);
 				world.AddPhysicsBody(character);
 				ennemy.removePhysics(&world);
+				previousLevelState = 1;
 				levelCreated = true;
 				break;
 			}
@@ -67,6 +79,7 @@ int main()
 				world.AddPhysicsBody(character);
 				ennemy.initEnnemies(650, 200);
 				ennemy.addPhysics(&world);
+				previousLevelState = 2;
 				levelCreated = true;
 				break;
 			}
@@ -82,11 +95,26 @@ int main()
 
 				window.close();
 			}
-			if (menu.updateMenu(&window, &event, state))
-				continue;
 
-			if (credits.updateCredits(&window, &event, state))
-				continue;
+			switch (state)
+			{
+			case 0:
+			{
+				if (menu.updateMenu(&window, &event, state)) continue;
+				break;
+			}
+			case 4:
+			{
+				if (victory.updateVictory(&window, &event, state, previousLevelState)) continue;
+				break;
+			}
+			case 6:
+			{
+				if (credits.updateCredits(&window, &event, state)) continue;
+			}
+			default:
+				break;
+			}
 
 			if (event.key.code == sf::Keyboard::D) character.forward();
 			if (event.key.code == sf::Keyboard::Q) character.backward();
@@ -121,6 +149,11 @@ int main()
 				level2.drawLevel(&window);
 				window.draw(character);
 				ennemy.drawEnnemies(&window);
+				break;
+			}
+			case 4:
+			{
+				victory.drawVictory(&window);
 				break;
 			}
 			case 6:

@@ -19,7 +19,12 @@ private:
 public:
 	Level1(sfp::World* world);
 	~Level1();
+	void initLevels() override;
 	void drawLevel(sf::RenderWindow* window) override;
 	void addPhysics(sfp::World* world) override;
 	void removePhysics(sfp::World* world) override;
+	void levelsElapsedTime() override;
+	void levelsTries(bool addTry) override;
+	double getLevelsElapsedTime() override;
+	int getLevelsTries() override;
 };
