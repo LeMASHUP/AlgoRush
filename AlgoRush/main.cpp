@@ -8,6 +8,7 @@
 #include <cstdio>
 
 #include "Menu.h"
+#include "GameOver.h"
 #include "Credits.h"
 #include "Character.h"
 #include "Ennemies.h"
@@ -18,8 +19,8 @@
 
 int main()
 {
-	int state = 0;
-	int previousLevelState = 0;
+	int state = 5;
+	int previousLevelState = 1;
 	bool levelCreated = false;
 
 	srand(time(0));
@@ -42,6 +43,7 @@ int main()
 	Level2 level2(&world);
 	Character character;
 	Ennemies ennemy;
+	GameOver gameover;
 	Victory victory;
 	BlockManager BlockManager(&world);
 
@@ -108,9 +110,15 @@ int main()
 				if (victory.updateVictory(&window, &event, state, previousLevelState)) continue;
 				break;
 			}
+			case 5:
+			{
+				if (gameover.updateGameOver(&window, &event, state, previousLevelState)) continue;
+				break;
+			}
 			case 6:
 			{
 				if (credits.updateCredits(&window, &event, state)) continue;
+				break;
 			}
 			default:
 				break;
@@ -154,6 +162,11 @@ int main()
 			case 4:
 			{
 				victory.drawVictory(&window);
+				break;
+			}
+			case 5:
+			{
+				gameover.drawGameOver(&window);
 				break;
 			}
 			case 6:
