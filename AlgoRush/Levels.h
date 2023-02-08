@@ -8,25 +8,21 @@
 
 class Levels
 {
-private:
-	
 protected:
-	sf::Image m_backgroundI;
-	sf::Image m_floorI;
-	sf::Image m_exitI;
+	// Texture for all levels to load and keep
 	sf::Texture m_backgroundT;
 	sf::Texture m_floorT;
 	sf::Texture m_exitT;
 
+	// Objects for all levels
 	sfp::PhysicsRectangle m_background;
 	sfp::PhysicsRectangle m_floor;
 	sfp::PhysicsRectangle m_exit;
 	sfp::PhysicsRectangle m_blockBackground;
 public:
 	Levels();
-	sfp::PhysicsRectangle getFloor();
-	sfp::PhysicsRectangle getExit();
-	virtual void DrawLevel(sf::RenderWindow* window) = 0;
-	virtual void AddPhysics(sfp::World* world) = 0;
-	virtual void RemovePhysics(sfp::World* world) = 0;
+
+	virtual void drawLevel(sf::RenderWindow* window) = 0;
+	virtual void addPhysics(sfp::World* world) = 0;
+	virtual void removePhysics(sfp::World* world) = 0;
 };

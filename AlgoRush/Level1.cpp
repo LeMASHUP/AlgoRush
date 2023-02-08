@@ -2,6 +2,16 @@
 
 Level1::Level1(sfp::World* world) : Levels()
 {
+	// Images to load into texture
+	sf::Image m_backgroundI;
+	sf::Image m_floorI;
+	sf::Image m_exitI;
+	sf::Image m_bookPileI;
+	sf::Image m_shelfI;
+	sf::Image m_keyI;
+	sf::Image m_DVDPileI;
+
+	// Load and check images and textures
 	if (!m_backgroundI.loadFromFile("assets/backgroundLevel1.png")) std::cout << "Error in loading level 1 background texture" << std::endl;
 	if (!m_backgroundT.loadFromImage(m_backgroundI)) std::cout << "Error in loading level 1 background texture" << std::endl;
 	if (!m_floorI.loadFromFile("assets/floorLevel1.jpg")) std::cout << "Error in loading level 1 floor texture" << std::endl;
@@ -17,6 +27,7 @@ Level1::Level1(sfp::World* world) : Levels()
 	if (!m_exitI.loadFromFile("assets/exitLevel1.png")) std::cout << "Error in loading level 1 exit texture" << std::endl;
 	if (!m_exitT.loadFromImage(m_exitI)) std::cout << "Error in loading level 1 exit texture" << std::endl;
 	
+	// Settings for objects
 	m_background.setSize(Vector2f(1600, 840));
 	m_background.setCenter(Vector2f(800, 250));
 	m_background.setTexture(&m_backgroundT);
@@ -62,7 +73,7 @@ Level1::~Level1()
 {
 }
 
-void Level1::DrawLevel(sf::RenderWindow* window)
+void Level1::drawLevel(sf::RenderWindow* window)
 {
 	window->draw(m_background);
 	window->draw(m_blockBackground);
@@ -74,7 +85,7 @@ void Level1::DrawLevel(sf::RenderWindow* window)
 	window->draw(m_exit);
 }
 
-void Level1::AddPhysics(sfp::World* world)
+void Level1::addPhysics(sfp::World* world)
 {
 	world->AddPhysicsBody(m_floor);
 	world->AddPhysicsBody(m_bookPile);
@@ -83,7 +94,7 @@ void Level1::AddPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_exit);
 }
 
-void Level1::RemovePhysics(sfp::World* world)
+void Level1::removePhysics(sfp::World* world)
 {
 	world->RemovePhysicsBody(m_floor);
 	world->RemovePhysicsBody(m_bookPile);

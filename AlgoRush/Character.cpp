@@ -1,14 +1,10 @@
 #include "Character.h"
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFPhysics.h>
 
-Character::Character() : getObject(false)
+Character::Character() : m_isAlive(true), getObject(false)
 {
-	this->setSize(Vector2f(10, 20));
-	this->setCenter(Vector2f(400, 450));
-	this->setRestitution(0.15);
-
+	this->setSize(Vector2f(25, 50));
+	this->setCenter(Vector2f(200, 300));
+	this->setRestitution(0.15f);
 }
 
 void Character::forward()
@@ -28,7 +24,7 @@ void Character::jump()
 
 void Character::jumpForward()
 {
-	this->setVelocity(Vector2f(0.1, -0.3));
+	this->setVelocity(Vector2f(0.1, -0.6));
 }
 
 void Character::catchObject()
@@ -54,4 +50,14 @@ int Character::getPosX()
 int Character::getPosY()
 {
 	return this->getCenter().y;
+}
+
+void Character::setIsAlive(bool isAlive)
+{
+	m_isAlive = isAlive;
+}
+
+bool Character::getIsAlive()
+{
+	return m_isAlive;
 }
