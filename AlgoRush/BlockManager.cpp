@@ -12,6 +12,8 @@ BlockManager::BlockManager(sfp::World* world)
 		m_blockList[i].setSize(Vector2f (100, 100));
 		m_blockList[i].setPosition(Vector2f(25+150*i, 200));
 	}
+    m_startBloc.setSize(Vector2f(50, 50));
+    m_startBloc.setPosition(Vector2f(85, 500));
 }
 
 void BlockManager::update(sf::Event* event)
@@ -28,49 +30,49 @@ void BlockManager::update(sf::Event* event)
                   case 0 :
                     {
                       m_blockInstructions.push_back(new BlocBackward);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 1" << std::endl;
                       break;
                     }
                   case 1:
                   {
                       m_blockInstructions.push_back(new BlocCatch);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 2" << std::endl;
                       break;
                   }
                   case 2:
                   {
                       m_blockInstructions.push_back(new BlocForward);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 3" << std::endl;
                       break;
                   }
                   case 3:
                   {
                       m_blockInstructions.push_back(new BlocJump);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 4" << std::endl;
                       break;
                   }
                   case 4:
                   {
                       m_blockInstructions.push_back(new BlocJumpForward);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 5" << std::endl;
                       break;
                   }
                   case 5:
                   {
                       m_blockInstructions.push_back(new BlocThrow);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 6" << std::endl;
                       break;
                   }
                   case 6:
                   {
                       m_blockInstructions.push_back(new BlocWait);
-                      m_blockInstructions.back()->setPosition(Vector2f(25 + 60 * m_blockInstructions.size(), 500));
+                      m_blockInstructions.back()->setPosition(Vector2f(85 + 60 * m_blockInstructions.size(), 500));
                       std::cout << "Print 7" << std::endl;
                       break;
                   }
@@ -100,129 +102,139 @@ void BlockManager::update(sf::Event* event)
             }
         }
     }
+    else if (event-> type == sf::Event::KeyPressed){
 
-    else if (event->key.code == sf::Keyboard::Numpad0 && m_select>=0) {
-        int iteration=m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10;
+        if (event->key.code == sf::Keyboard::Numpad0 && m_select>=0) {
+            int iteration=m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration *= 10;
+            }
+            else if (iteration < 1) {
+                iteration = 0;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string (iteration));
         }
-        else if (iteration < 1) {
+
+        else if (event->key.code == sf::Keyboard::Numpad1 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration*10) + 1;
+            }
+            else if (iteration < 1) {
+                iteration = 1;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad2 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration*10) + 2;
+            }
+            else if (iteration < 1) {
+                iteration = 2;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad3 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 3;
+            }
+            else if (iteration < 1) {
+                iteration = 3;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad4 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 4;
+            }
+            else if (iteration < 1) {
+                iteration = 4;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad5 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 5;
+            }
+            else if (iteration < 1) {
+                iteration = 5;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad6 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 6;
+            }
+            else if (iteration < 1) {
+                iteration = 6;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad7 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 7;
+            }
+            else if (iteration < 1) {
+                iteration = 7;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad8 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 8;
+            }
+            else if (iteration < 1) {
+                iteration = 8;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Numpad9 && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
+            if (iteration < 10 && iteration>0) {
+                iteration = (iteration * 10) + 9;
+            }
+            else if (iteration < 1) {
+                iteration = 9;
+            }
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+        }
+
+        else if (event->key.code == sf::Keyboard::Enter && m_select >= 0) {
+            m_select = -1;
+        }
+
+        else if (event->key.code == sf::Keyboard::Backspace && m_select >= 0) {
+            int iteration = m_blockInstructions.at(m_select)->getIteration();
             iteration = 0;
+            m_blockInstructions.at(m_select)->setIteration(iteration);
+            m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
+            std::cout << "Number delete" << std::endl;
         }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string (iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad1 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 1;
-        }
-        else if (iteration < 1) {
-            iteration = 1;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad2 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 2;
-        }
-        else if (iteration < 1) {
-            iteration = 2;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad3 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 3;
-        }
-        else if (iteration < 1) {
-            iteration = 3;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad4 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 4;
-        }
-        else if (iteration < 1) {
-            iteration = 4;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad5 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 5;
-        }
-        else if (iteration < 1) {
-            iteration = 5;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad6 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 6;
-        }
-        else if (iteration < 1) {
-            iteration = 6;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad7 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 7;
-        }
-        else if (iteration < 1) {
-            iteration = 7;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad8 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 8;
-        }
-        else if (iteration < 1) {
-            iteration = 8;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Numpad9 && m_select >= 0) {
-        int iteration = m_blockInstructions.at(m_select)->getIteration();
-        if (iteration < 10 && iteration>0) {
-            iteration *= 10 + 9;
-        }
-        else if (iteration < 1) {
-            iteration = 9;
-        }
-        m_blockInstructions.at(m_select)->setIteration(iteration);
-        m_blockInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-    }
-
-    else if (event->key.code == sf::Keyboard::Enter && m_select >= 0) {
-        m_select = -1;
     }
 }
 
@@ -231,6 +243,8 @@ void BlockManager::draw(sf::RenderWindow* window)
     for (int i = 0; i < 8; i++) {
         window->draw(m_blockList[i]);
     }
+
+    window->draw(m_startBloc);
 
     for (int i = 0; i < m_blockInstructions.size(); i++) {
         m_blockInstructions.at(i)->getTextIteration().setPosition(m_blockInstructions.at(i)->getPosition().x, m_blockInstructions.at(i)->getPosition().y);
