@@ -5,25 +5,68 @@
 #include <string>
 #include <cstdio>
 
-BlockManager::BlockManager(sfp::World* world)
+BlockManager::BlockManager(sfp::World* world) :m_start(false)
 {
     m_select = -1;
 	for (int i = 0; i < 8; i++) {
 		m_blockList[i].setSize(Vector2f (100, 100));
 		m_blockList[i].setPosition(Vector2f(25+150*i, 200));
 	}
-    m_startBloc.setSize(Vector2f(50, 50));
+    m_blockList[8].setSize(Vector2f(100, 100));
+    m_blockList[8].setPosition(Vector2f(1500, 500));
+    m_startBloc.setSize(Vector2f(75, 75));
     m_startBloc.setPosition(Vector2f(85, 500));
+
+    sf::Image image;
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[0].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[0].setTexture(&m_blocTexture[0]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[1].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[1].setTexture(&m_blocTexture[1]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[2].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[2].setTexture(&m_blocTexture[2]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[3].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[3].setTexture(&m_blocTexture[3]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[4].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[4].setTexture(&m_blocTexture[4]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[5].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[5].setTexture(&m_blocTexture[5]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[6].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[6].setTexture(&m_blocTexture[6]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[7].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[7].setTexture(&m_blocTexture[7]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_blocTexture[8].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_blockList[8].setTexture(&m_blocTexture[8]);
+
+    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!m_startTexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+    m_startBloc.setTexture(&m_startTexture);
 }
 
 void BlockManager::update(sf::Event* event)
 {
-    if (event->type == sf::Event::MouseButtonPressed) {
+    if (event->type == sf::Event::MouseButtonPressed && !m_start) {
         if (m_select >= 0) {
             m_select = -1;
         }
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             if (m_blockList[i].getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y)) {
                 //m_blockList[0] correspond à BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
                 switch (i) {
@@ -78,13 +121,20 @@ void BlockManager::update(sf::Event* event)
                   }
                   case 7:
                   {
-                      if (m_blockInstructions.size()>0) {
+                      if (m_blockInstructions.size() > 0) {
                         std::cout << "Delete" << std::endl;
                         delete m_blockInstructions.back();
                         m_blockInstructions.pop_back();
                         std::cout << "Deleted" << std::endl;
                       }
                       break;
+                  }
+                  case 8: 
+                  {
+                      if (m_blockInstructions.size() > 0) {
+                          m_start = true;
+                          //
+                      }
                   }
                   default: 
                   {
@@ -102,7 +152,7 @@ void BlockManager::update(sf::Event* event)
             }
         }
     }
-    else if (event-> type == sf::Event::KeyPressed){
+    else if (event-> type == sf::Event::KeyPressed && !m_start){
 
         if (event->key.code == sf::Keyboard::Numpad0 && m_select>=0) {
             int iteration=m_blockInstructions.at(m_select)->getIteration();
@@ -240,7 +290,7 @@ void BlockManager::update(sf::Event* event)
 
 void BlockManager::draw(sf::RenderWindow* window)
 {
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
         window->draw(m_blockList[i]);
     }
 
@@ -250,4 +300,14 @@ void BlockManager::draw(sf::RenderWindow* window)
         m_blockInstructions.at(i)->getTextIteration().setPosition(m_blockInstructions.at(i)->getPosition().x, m_blockInstructions.at(i)->getPosition().y);
         m_blockInstructions.at(i)->draw(window);
     }
+}
+
+vector<ExecBlocs*>& const BlockManager::getBlockInstructions()
+{
+    return m_blockInstructions;
+}
+
+bool& const BlockManager::getStart()
+{
+    return m_start;
 }
