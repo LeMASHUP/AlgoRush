@@ -43,7 +43,7 @@ int main()
 	Character character;
 	Ennemies ennemy;
 	Victory victory;
-  BlockManager BlockManager(&world);
+	BlockManager BlockManager(&world);
 
 	while (window.isOpen()) {
 
