@@ -22,25 +22,23 @@ Victory::Victory()
 	m_victoryBackground.setPosition(Vector2f(0, 0));
 
 	m_victoryText.setFont(m_font);
-	m_victoryText.setString("             Well done !\nReady for the next level ?");
 	m_victoryText.setCharacterSize(52);
 	m_victoryText.setFillColor(Color::Red);
 	m_victoryText.setStyle(sf::Text::Bold);
 	m_victoryText.setPosition(Vector2f(500, 150));
 
 	m_levelElapsedTimeText.setFont(m_font);
-	m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
-	m_levelElapsedTimeText.setCharacterSize(40);
+	m_levelElapsedTimeText.setCharacterSize(32);
 	m_levelElapsedTimeText.setFillColor(Color::Red);
 	m_levelElapsedTimeText.setStyle(sf::Text::Bold);
-	m_levelElapsedTimeText.setPosition(Vector2f(200, 450));
+	m_levelElapsedTimeText.setPosition(Vector2f(150, 450));
 
 	m_levelTriesText.setFont(m_font);
 	m_levelTriesText.setString(m_levelTriesString);
-	m_levelTriesText.setCharacterSize(40);
+	m_levelTriesText.setCharacterSize(32);
 	m_levelTriesText.setFillColor(Color::Red);
 	m_levelTriesText.setStyle(sf::Text::Bold);
-	m_levelTriesText.setPosition(Vector2f(200, 550));
+	m_levelTriesText.setPosition(Vector2f(150, 550));
 
 	m_continueButton.setSize(Vector2f(225, 75));
 	m_continueButton.setTexture(&m_continueButtonT);
@@ -100,12 +98,19 @@ void Victory::setStringVariables(int& previousLevelState, Level1* level1, Level2
 {
 	if (previousLevelState == 1)
 	{
-		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+		m_victoryText.setString("             Well done !\nReady for the next level ?");
+;		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
+		m_levelTriesText.setString(m_levelTriesString);
 	}
 	else if (previousLevelState == 2)
 	{
+		m_victoryText.setString("             Great job !\nYou finish the game !");
 		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsElapsedTime());
+		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsTries());
+		m_levelTriesText.setString(m_levelTriesString);
+		m_continueButton.setPosition(Vector2f(2000,2000));
 	}
 }

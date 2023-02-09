@@ -97,13 +97,13 @@ void Level2::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_exit);
 }
 
-void Level2::levelsElapsedTime()
+void Level2::setLevelsElapsedTime()
 {
 	m_levelsCurrentTime = levelsClock.getElapsedTime();
 	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asMilliseconds();
 }
 
-void Level2::levelsTries(bool addTry)
+void Level2::setLevelsTries(bool addTry)
 {
 	if (addTry) m_levelsTries += 1;
 	else m_levelsTries = 0;

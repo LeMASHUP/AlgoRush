@@ -21,8 +21,8 @@ public:
 	void drawLevel(sf::RenderWindow* window) override;
 	void addPhysics(sfp::World* world) override;
 	void removePhysics(sfp::World* world) override;
-	void levelsElapsedTime() override;
-	void levelsTries(bool addTry) override;
+	void setLevelsElapsedTime() override;
+	void setLevelsTries(bool addTry) override;
 	double getLevelsElapsedTime() override;
 	int getLevelsTries() override;
 	sfp::PhysicsRectangle& getTrashCan();
