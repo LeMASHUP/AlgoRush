@@ -23,6 +23,6 @@ public:
 
 	void init(Character* character);
 
-	void update(Character* character);
+	void update(Character* character, int& state);
 
 };

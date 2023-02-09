@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character() : m_isAlive(true), getObject(false)
+Character::Character() : m_isAlive(true), getObject(false), hightVelocity(false)
 {
 	// Image to load into texture
 	sf::Image m_characterI;
@@ -26,7 +26,7 @@ void Character::backward()
 
 void Character::jump()
 {
-	this->setVelocity(Vector2f(0, -0.3));
+	this->setVelocity(Vector2f(0, -0.7));
 }
 
 void Character::jumpForward()
@@ -71,6 +71,19 @@ bool Character::getIsAlive()
 
 void Character::initCharacter()
 {
-	this->setCenter(Vector2f(200, 500));
+	this->setCenter(Vector2f(200, 600));
 	this->setVelocity(Vector2f(0, 0));
+}
+
+void Character::updateCharacter(int& state)
+{
+	if (!m_isAlive) {
+		state = 5;
+	}
+	if (this->getVelocity().y > 0.8) {
+		hightVelocity = true;
+	}
+	if (this->getVelocity().y < 0.1 && hightVelocity) {
+		m_isAlive = false;
+	}
 }

@@ -83,8 +83,9 @@ int main()
 			}
 			else if (programInit)
 			{
-				program->update(character);
+				program->update(character, state);
 			}
+			character->updateCharacter(state);
 			break;
 		}
 		case 2:
@@ -95,7 +96,7 @@ int main()
 				level2->addPhysics(&world);
 				level2->initLevels();
 				world.AddPhysicsBody(*character);
-				ennemy->initEnnemies(700, 400);
+				ennemy->initEnnemies(650, 630);
 				ennemy->addPhysics(&world);
 				previousLevelState = 2;
 				levelCreated = true;
@@ -117,9 +118,10 @@ int main()
 			}
 			else if (programInit)
 			{
-				program->update(character);
+				program->update(character, state);
 			}
 			ennemy->updateEnnemies(&world, character, level2);
+			character->updateCharacter(state);
 			break;
 		}
 		case 4:
@@ -181,7 +183,7 @@ int main()
 			}
 			case 5:
 			{
-				if (gameover->updateGameOver(&window, &event, state, previousLevelState, levelCreated, menuCreated)) continue;
+				if (gameover->updateGameOver(&window, &event, state, previousLevelState, levelCreated, menuCreated, character)) continue;
 				break;
 			}
 			case 6:

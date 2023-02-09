@@ -20,6 +20,7 @@ Ennemies::~Ennemies()
 
 void Ennemies::initEnnemies(float pos_x, float pos_y)
 {
+
 	m_ennemy.setCenter(Vector2f(pos_x, pos_y));
 }
 
@@ -41,16 +42,16 @@ void Ennemies::removePhysics(sfp::World* world)
 
 void Ennemies::updateEnnemies(sfp::World* world, Character* character, Level2* level2)
 {
-	if (m_ennemy.collideWith(*character).hasCollided)
+	if (m_ennemy.collideWith(*character).hasCollided && m_isAlive)
 	{
-		if (character->getPosY() > m_ennemy.getCenter().y)
-		{
-			character->setIsAlive(false);
-		}
-		else
+		if (character->getCenter().y < m_ennemy.getCenter().y)
 		{
 			m_isAlive = false;
 			world->RemovePhysicsBody(m_ennemy);
+		}
+		else
+		{
+			character->setIsAlive(false);
 		}
 	}
 	if (m_ennemy.collideWith(level2->getTrashCan()).hasCollided)
