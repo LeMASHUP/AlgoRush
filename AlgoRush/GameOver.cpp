@@ -100,7 +100,7 @@ void GameOver::setStringVariables(int& previousLevelState, Level1* level1, Level
 {
 	if (previousLevelState == 1)
 	{
-		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime()) + " scds";
 		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
 		m_levelTriesText.setString(m_levelTriesString);

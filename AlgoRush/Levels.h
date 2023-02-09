@@ -13,7 +13,7 @@ protected:
 	sf::Clock levelsClock;
 	sf::Time m_levelsBeginTime;
 	sf::Time m_levelsCurrentTime;
-	double m_levelsElapsedTime;
+	int m_levelsElapsedTime;
 	int m_levelsTries;
 
 	// Texture for all levels to load and keep
@@ -34,7 +34,7 @@ public:
 	virtual void removePhysics(sfp::World* world) = 0;
 	virtual void setLevelsElapsedTime() = 0;
 	virtual void setLevelsTries(bool addTry) = 0;
-	virtual double getLevelsElapsedTime() = 0;
-	virtual int getLevelsTries() = 0;
+	virtual int& const getLevelsElapsedTime() = 0;
+	virtual int& const getLevelsTries() = 0;
 	virtual void isWin(sf::RenderWindow* window,Character* character, int& state) = 0;
 };

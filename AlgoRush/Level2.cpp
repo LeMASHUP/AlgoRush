@@ -59,6 +59,8 @@ Level2::Level2() : Levels()
 	m_exit.setCenter(Vector2f(1500, 565));
 	m_exit.setTexture(&m_exitT);
 	m_exit.setStatic(true);
+
+	m_levelsTries = 0;
 }
 
 Level2::~Level2()
@@ -67,6 +69,7 @@ Level2::~Level2()
 
 void Level2::initLevels()
 {
+	setLevelsTries(true);
 	m_levelsBeginTime = levelsClock.getElapsedTime();
 }
 
@@ -109,12 +112,12 @@ void Level2::setLevelsTries(bool addTry)
 	else m_levelsTries = 0;
 }
 
-double Level2::getLevelsElapsedTime()
+int& const Level2::getLevelsElapsedTime()
 {
 	return m_levelsElapsedTime;
 }
 
-int Level2::getLevelsTries()
+int& const Level2::getLevelsTries()
 {
 	return m_levelsTries;
 }
@@ -131,7 +134,8 @@ sfp::PhysicsRectangle& Level2::getFireHydrant()
 
 void Level2::isWin(sf::RenderWindow* window, Character* character, int& state)
 {
-	/*if (character->getCenter().x > m_exit.getCenter().x - m_exit.getSize().x / 2 && character->getCenter().x < m_exit.getCenter().x + m_exit.getSize().x / 2) {
+	if (character->getCenter().x > m_exit.getCenter().x - m_exit.getSize().x / 2 && character->getCenter().x < m_exit.getCenter().x + m_exit.getSize().x / 2) {
+		setLevelsElapsedTime();
 		state = 4;
-	}*/
+	}
 }

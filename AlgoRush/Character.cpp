@@ -71,6 +71,6 @@ bool Character::getIsAlive()
 
 void Character::initCharacter()
 {
-	this->setCenter(Vector2f(200, 300));
+	this->setCenter(Vector2f(200, 500));
 	this->setVelocity(Vector2f(0, 0));
 }
