@@ -83,10 +83,11 @@ void Menu::drawMenu(sf::RenderWindow* window)
 	window->draw(m_creditsButton);
 }
 
-bool Menu::updateMenu(sf::RenderWindow* window, sf::Event* event, int& state)
+bool Menu::updateMenu(sf::RenderWindow* window, sf::Event* event, int& state, bool& levelCreated)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_playButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
+		levelCreated = false;
 		state = 1;
 		return true;
 	}

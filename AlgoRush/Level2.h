@@ -27,4 +27,5 @@ public:
 	int getLevelsTries() override;
 	sfp::PhysicsRectangle& getTrashCan();
 	sfp::PhysicsRectangle& getFireHydrant();
+	void isWin(sf::RenderWindow* window, Character* character, int& state) override;
 };

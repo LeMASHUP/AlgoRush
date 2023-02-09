@@ -312,9 +312,15 @@ bool& const BlockManager::getStart()
     return m_start;
 }
 
+void BlockManager::setStart(bool start)
+{
+    m_start = start;
+}
+
 void BlockManager::clearBlocInstructions()
 {
-    for (int i = 0; i < m_blocInstructions.size(); i++) {
-        delete m_blocInstructions.at(i);
+    for (int i = m_blocInstructions.size(); i >0 ; i--) {
+        delete m_blocInstructions.back();
+        m_blocInstructions.pop_back();
     }
 }

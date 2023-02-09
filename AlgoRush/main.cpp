@@ -69,12 +69,14 @@ int main()
 				previousLevelState = 1;
 				levelCreated = true;
 				blockManager->clearBlocInstructions();
+				blockManager->setStart(false);
 				if (programInit) {
 					delete program;
 					programInit = false;
 				}
 				break;
 			}
+			level1->isWin(&window, character, state);
 			if (blockManager->getStart() && !programInit) {
 				program = new Program(blockManager->getBlockInstructions());
 				programInit = true;
@@ -97,6 +99,7 @@ int main()
 				previousLevelState = 2;
 				levelCreated = true;
 				blockManager->clearBlocInstructions();
+				blockManager->setStart(false);
 				if (programInit) {
 					delete program;
 					programInit = false;
@@ -147,7 +150,7 @@ int main()
 			{
 			case 0:
 			{
-				if (menu->updateMenu(&window, &event, state)) continue;
+				if (menu->updateMenu(&window, &event, state, levelCreated)) continue;
 				break;
 			}
 			case 1:
@@ -162,12 +165,12 @@ int main()
 			}
 			case 4:
 			{
-				if (victory->updateVictory(&window, &event, state, previousLevelState)) continue;
+				if (victory->updateVictory(&window, &event, state, previousLevelState, levelCreated)) continue;
 				break;
 			}
 			case 5:
 			{
-				if (gameover->updateGameOver(&window, &event, state, previousLevelState)) continue;
+				if (gameover->updateGameOver(&window, &event, state, previousLevelState, levelCreated)) continue;
 				break;
 			}
 			case 6:

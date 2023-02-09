@@ -4,6 +4,7 @@
 #include "SFPhysics.h"
 
 #include <iostream>
+#include "Character.h"
 
 class Levels
 {
@@ -35,4 +36,5 @@ public:
 	virtual void setLevelsTries(bool addTry) = 0;
 	virtual double getLevelsElapsedTime() = 0;
 	virtual int getLevelsTries() = 0;
+	virtual void isWin(sf::RenderWindow* window,Character* character, int& state) = 0;
 };

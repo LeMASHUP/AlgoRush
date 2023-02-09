@@ -73,10 +73,11 @@ void GameOver::drawGameOver(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool GameOver::updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState)
+bool GameOver::updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_retryButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
+		levelCreated = false;
 		state = previousLevelState;
 		return true;
 	}

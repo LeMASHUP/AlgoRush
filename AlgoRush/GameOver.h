@@ -38,6 +38,6 @@ public:
 	GameOver();
 	~GameOver();
 	void drawGameOver(sf::RenderWindow* window);
-	bool updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState);
+	bool updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated);
 	void setStringVariables(int& previousLevelState, Level1* level1, Level2* level2);
 };

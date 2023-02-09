@@ -74,10 +74,11 @@ void Victory::drawVictory(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState)
+bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_continueButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
+		levelCreated = false;
 		state = previousLevelState + 1;
 		return true;
 	}

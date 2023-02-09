@@ -27,4 +27,5 @@ public:
 	void setLevelsTries(bool addTry) override;
 	double getLevelsElapsedTime() override;
 	int getLevelsTries() override;
+	void isWin(sf::RenderWindow* window, Character* character, int& state) override;
 };
