@@ -18,6 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+    <Filter>Fichiers sources</Filter>
+    </ClCompile>
     <ClCompile Include="BlocWait.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -77,6 +80,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="BlocWait.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
