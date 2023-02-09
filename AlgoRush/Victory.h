@@ -23,6 +23,7 @@ private:
 	// String variable to put into sf::Text::toString()
 	string m_levelElapsedTimeString;
 	string m_levelTriesString;
+	string m_victoryString;
 
 	// Logos textures
 	sf::Texture m_continueButtonT;

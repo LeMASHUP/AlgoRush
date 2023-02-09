@@ -16,12 +16,15 @@
 #include "Level2.h"
 #include "Victory.h"
 
-
 int main()
 {
-	int state = 0;
-	int previousLevelState = 0;
+	int state = 4;
+	int previousLevelState = 1;
 	bool levelCreated = false;
+
+	// To delete when win and loose condition working 
+	bool test = false;
+	//
 
 	srand(time(0));
 
@@ -87,6 +90,17 @@ int main()
 			}
 			ennemy->updateEnnemies(&world, character, level2);
 		}
+		// Case 4 to delete when win and loose condition working
+		case 4:
+		{
+			if (test == false)
+			{
+				victory->setStringVariables(previousLevelState, level1, level2);
+				test = true;
+			}
+			break;
+		}
+		//
 		default:
 			break;
 		}

@@ -32,8 +32,8 @@ public:
 	virtual void drawLevel(sf::RenderWindow* window) = 0;
 	virtual void addPhysics(sfp::World* world) = 0;
 	virtual void removePhysics(sfp::World* world) = 0;
-	virtual void levelsElapsedTime() = 0;
-	virtual void levelsTries(bool addTry) = 0;
+	virtual void setLevelsElapsedTime() = 0;
+	virtual void setLevelsTries(bool addTry) = 0;
 	virtual double getLevelsElapsedTime() = 0;
 	virtual int getLevelsTries() = 0;
 };
