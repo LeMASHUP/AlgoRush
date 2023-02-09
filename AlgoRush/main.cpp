@@ -23,10 +23,7 @@ int main()
 	int previousLevelState = 0;
 	bool levelCreated = false;
 	bool programInit = false;
-
-	// To delete when win and loose condition working 
 	bool menuCreated = false;
-	//
 
 	srand(time(0));
 
@@ -64,6 +61,7 @@ int main()
 			{
 				level2->removePhysics(&world);
 				level1->addPhysics(&world);
+				level1->initLevels();
 				world.AddPhysicsBody(*character);
 				ennemy->removePhysics(&world);
 				previousLevelState = 1;
@@ -75,7 +73,7 @@ int main()
 					delete program;
 					programInit = false;
 				}
-				break;
+				
 			}
 			level1->isWin(&window, character, state);
 			if (blockManager->getStart() && !programInit) {
@@ -87,6 +85,7 @@ int main()
 			{
 				program->update(character);
 			}
+			break;
 		}
 		case 2:
 		{
@@ -94,8 +93,9 @@ int main()
 			{
 				level1->removePhysics(&world);
 				level2->addPhysics(&world);
+				level2->initLevels();
 				world.AddPhysicsBody(*character);
-				ennemy->initEnnemies(650, 200);
+				ennemy->initEnnemies(700, 400);
 				ennemy->addPhysics(&world);
 				previousLevelState = 2;
 				levelCreated = true;
@@ -106,8 +106,9 @@ int main()
 					delete program;
 					programInit = false;
 				}
-				break;
+				
 			}
+			level2->isWin(&window, character, state);
 			if (blockManager->getStart() && !programInit)
 			{
 				program = new Program(blockManager->getBlockInstructions());
@@ -119,6 +120,7 @@ int main()
 				program->update(character);
 			}
 			ennemy->updateEnnemies(&world, character, level2);
+			break;
 		}
 		case 4:
 		{
@@ -174,7 +176,7 @@ int main()
 			}
 			case 4:
 			{
-				if (victory->updateVictory(&window, &event, state, previousLevelState, levelCreated, menuCreated)) continue;
+				if (victory->updateVictory(&window, &event, level1, level2, state, previousLevelState, levelCreated, menuCreated)) continue;
 				break;
 			}
 			case 5:

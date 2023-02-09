@@ -74,10 +74,12 @@ void Victory::drawVictory(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated)
+bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, Level1* level1, Level2* level2, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_continueButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
+		if (previousLevelState == 1) level1->setLevelsTries(false);
+		else if (previousLevelState == 2) level2->setLevelsTries(false);
 		levelCreated = false;
 		menuCreated = false;
 		state = previousLevelState + 1;
@@ -103,7 +105,7 @@ void Victory::setStringVariables(int& previousLevelState, Level1* level1, Level2
 	if (previousLevelState == 1)
 	{
 		m_victoryText.setString("             Well done !\nReady for the next level ?");
-;		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+;		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime()) + " scds";
 		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
 		m_levelTriesText.setString(m_levelTriesString);
