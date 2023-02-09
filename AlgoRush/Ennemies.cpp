@@ -2,8 +2,10 @@
 
 Ennemies::Ennemies() : m_isAlive(true), m_ennemyVelocity(0.1)
 {
+	// Image of ennemy to load into texture
 	sf::Image m_ennemyI;
 
+	// Load and check images and texture of ennemy
 	if (!m_ennemyI.loadFromFile("assets/ennemyBis.png")) std::cout << "Error in loading ennemy image" << std::endl;
 	if (!m_ennemyT.loadFromImage(m_ennemyI)) std::cout << "Error in loading ennemy texture" << std::endl;
 

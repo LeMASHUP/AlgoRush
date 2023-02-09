@@ -18,8 +18,8 @@
 
 int main()
 {
-	int state = 4;
-	int previousLevelState = 1;
+	int state = 0;
+	int previousLevelState = 0;
 	bool levelCreated = false;
 
 	// To delete when win and loose condition working 
@@ -39,11 +39,11 @@ int main()
 
 	sf::Event event;
 
-	//Creation of levels and character
+	//Creation of levels, menus and character
 	Menu* menu = new Menu();
 	Credits* credits = new Credits();
-	Level1* level1 = new Level1(&world);
-	Level2* level2 = new Level2(&world);
+	Level1* level1 = new Level1();
+	Level2* level2 = new Level2();
 	Character* character = new Character();
 	Ennemies* ennemy = new Ennemies();
 	GameOver* gameover = new GameOver();
@@ -52,6 +52,7 @@ int main()
 
 	while (window.isOpen()) {
 
+		// To do whend the state change
 		switch (state)
 		{
 		case 0:
@@ -91,11 +92,11 @@ int main()
 			ennemy->updateEnnemies(&world, character, level2);
 		}
 		// Case 4 to delete when win and loose condition working
-		case 4:
+		case 5:
 		{
 			if (test == false)
 			{
-				victory->setStringVariables(previousLevelState, level1, level2);
+				gameover->setStringVariables(previousLevelState, level1, level2);
 				test = true;
 			}
 			break;
@@ -112,6 +113,7 @@ int main()
 				window.close();
 			}
 
+			// To do while the state is set
 			switch (state)
 			{
 			case 0:
@@ -161,6 +163,8 @@ int main()
 			lastTime = currentTime;
 			world.UpdatePhysics(elapsedMs);
 			window.clear(sf::Color::Black);
+
+			// To draw while the state is set
 			switch (state)
 			{
 			case 0:
@@ -205,6 +209,8 @@ int main()
 			window.display();
 		}
 	}
+
+	// Free the memory of every objects created
 	delete(menu, credits, level1, level2, character, ennemy, gameover, victory, blockManager);
 	return 0;
 }

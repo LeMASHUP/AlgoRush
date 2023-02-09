@@ -21,25 +21,23 @@ GameOver::GameOver()
 	m_gameoverBackground.setPosition(Vector2f(0, 0));
 
 	m_gameoverText.setFont(m_font);
-	m_gameoverText.setString("             Good try !\nWant to try again ?");
+	m_gameoverText.setString("         Good try !\nWant to try again ?");
 	m_gameoverText.setCharacterSize(52);
 	m_gameoverText.setFillColor(Color::Red);
 	m_gameoverText.setStyle(sf::Text::Bold);
-	m_gameoverText.setPosition(Vector2f(500, 150));
+	m_gameoverText.setPosition(Vector2f(600, 150));
 
 	m_levelElapsedTimeText.setFont(m_font);
-	m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
-	m_levelElapsedTimeText.setCharacterSize(40);
+	m_levelElapsedTimeText.setCharacterSize(32);
 	m_levelElapsedTimeText.setFillColor(Color::Red);
 	m_levelElapsedTimeText.setStyle(sf::Text::Bold);
-	m_levelElapsedTimeText.setPosition(Vector2f(200, 450));
+	m_levelElapsedTimeText.setPosition(Vector2f(150, 450));
 
 	m_levelTriesText.setFont(m_font);
-	m_levelTriesText.setString(m_levelTriesString);
-	m_levelTriesText.setCharacterSize(40);
+	m_levelTriesText.setCharacterSize(32);
 	m_levelTriesText.setFillColor(Color::Red);
 	m_levelTriesText.setStyle(sf::Text::Bold);
-	m_levelTriesText.setPosition(Vector2f(200, 550));
+	m_levelTriesText.setPosition(Vector2f(150, 550));
 
 	m_retryButton.setSize(Vector2f(225, 75));
 	m_retryButton.setTexture(&m_retryButtonT);
@@ -100,11 +98,15 @@ void GameOver::setStringVariables(int& previousLevelState, Level1* level1, Level
 	if (previousLevelState == 1)
 	{
 		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsElapsedTime());
+		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
+		m_levelTriesText.setString(m_levelTriesString);
 	}
 	else if (previousLevelState == 2)
 	{
 		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsElapsedTime());
+		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsTries());
+		m_levelTriesText.setString(m_levelTriesString);
 	}
 }
