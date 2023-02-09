@@ -34,5 +34,5 @@ public:
 	Menu();
 	~Menu();
 	void drawMenu(sf::RenderWindow* window);
-	bool updateMenu(sf::RenderWindow* window, sf::Event* event, int& state);
+	bool updateMenu(sf::RenderWindow* window, sf::Event* event, int& state, bool& levelCreated);
 };

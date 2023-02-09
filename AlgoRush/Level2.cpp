@@ -86,7 +86,7 @@ void Level2::addPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_floor);
 	world->AddPhysicsBody(m_trashCan);
 	world->AddPhysicsBody(m_fireHydrant);
-	world->AddPhysicsBody(m_exit);
+	//world->AddPhysicsBody(m_exit);
 }
 
 void Level2::removePhysics(sfp::World* world)
@@ -94,7 +94,7 @@ void Level2::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_floor);
 	world->RemovePhysicsBody(m_trashCan);
 	world->RemovePhysicsBody(m_fireHydrant);
-	world->RemovePhysicsBody(m_exit);
+	//world->RemovePhysicsBody(m_exit);
 }
 
 void Level2::setLevelsElapsedTime()
@@ -127,4 +127,11 @@ sfp::PhysicsRectangle& Level2::getTrashCan()
 sfp::PhysicsRectangle& Level2::getFireHydrant()
 {
 	return m_fireHydrant;
+}
+
+void Level2::isWin(sf::RenderWindow* window, Character* character, int& state)
+{
+	/*if (character->getCenter().x > m_exit.getCenter().x - m_exit.getSize().x / 2 && character->getCenter().x < m_exit.getCenter().x + m_exit.getSize().x / 2) {
+		state = 4;
+	}*/
 }

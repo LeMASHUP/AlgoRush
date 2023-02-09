@@ -96,7 +96,6 @@ void Level1::addPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_bookPile);
 	world->AddPhysicsBody(m_shelf);
 	world->AddPhysicsBody(m_DVDPile);
-	world->AddPhysicsBody(m_exit);
 }
 
 void Level1::removePhysics(sfp::World* world)
@@ -105,7 +104,6 @@ void Level1::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_bookPile);
 	world->RemovePhysicsBody(m_shelf);
 	world->RemovePhysicsBody(m_DVDPile);
-	world->RemovePhysicsBody(m_exit);
 }
 
 void Level1::setLevelsElapsedTime()
@@ -128,4 +126,11 @@ double Level1::getLevelsElapsedTime()
 int Level1::getLevelsTries()
 {
 	return m_levelsTries;
+}
+
+void Level1::isWin(sf::RenderWindow* window, Character* character, int& state)
+{
+	if (character->getCenter().x > m_exit.getCenter().x - m_exit.getSize().x / 2 && character->getCenter().x < m_exit.getCenter().x + m_exit.getSize().x / 2) {
+		state = 4;
+	}
 }

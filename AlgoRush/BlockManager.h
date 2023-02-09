@@ -33,5 +33,6 @@ public:
 	void draw(sf::RenderWindow* window);
 	vector<ExecBlocs*>& const getBlockInstructions();
 	bool& const getStart();
+	void setStart(bool start);
 	void clearBlocInstructions();
 };
