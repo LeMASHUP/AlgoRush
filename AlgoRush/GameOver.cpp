@@ -1,4 +1,5 @@
 #include "GameOver.h"
+#include "Character.h"
 
 GameOver::GameOver()
 {

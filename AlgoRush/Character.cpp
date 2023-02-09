@@ -75,9 +75,17 @@ void Character::initCharacter()
 	this->setVelocity(Vector2f(0, 0));
 }
 
-void Character::updateCharacter(int& state)
+void Character::updateCharacter(int& state, Level1* level1, Level2* level2)
 {
 	if (!m_isAlive) {
+		if (state == 1)
+		{
+			level1->setLevelsElapsedTime();
+		}
+		else if (state == 2)
+		{
+			level2->setLevelsElapsedTime();
+		}
 		state = 5;
 	}
 	if (this->getVelocity().y > 0.8) {

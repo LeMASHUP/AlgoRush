@@ -4,7 +4,8 @@
 #include "SFPhysics.h"
 
 #include <iostream>
-#include "Character.h"
+
+class Character;
 
 class Levels
 {

@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
 #include "ExecBlocs.h"
+#include "Level1.h"
+#include "Level2.h"
 
 class Program
 {
@@ -23,6 +25,6 @@ public:
 
 	void init(Character* character);
 
-	void update(Character* character, int& state);
+	void update(Character* character, Level1* level1, Level2* level2, int& state);
 
 };

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
+#include "Level1.h"
+#include "Level2.h"
 
 class Character : public sfp::PhysicsRectangle
 {
@@ -27,5 +29,5 @@ public:
 	void setIsAlive(bool isAlive);
 	bool getIsAlive();
 	void initCharacter();
-	void updateCharacter(int& state);
+	void updateCharacter(int& state, Level1* level1, Level2* level2);
 };

@@ -15,7 +15,7 @@ void Program::init(Character* character)
 	m_init = true;
 }
 
-void Program::update(Character* character, int& state)
+void Program::update(Character* character, Level1* level1, Level2* level2, int& state)
 {
 	std::cout << m_ic << std::endl;
 	std::cout << m_pc << std::endl;
@@ -37,6 +37,8 @@ void Program::update(Character* character, int& state)
 		}
 	}
 	if (m_pc == m_blocksList.size() && (m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500) {
+		if (state == 1) level1->setLevelsElapsedTime();
+		else if (state == 2) level2->setLevelsElapsedTime();
 		state = 5;
 	}
 }

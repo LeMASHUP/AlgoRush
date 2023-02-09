@@ -83,9 +83,9 @@ int main()
 			}
 			else if (programInit)
 			{
-				program->update(character, state);
+				program->update(character, level1, level2, state);
 			}
-			character->updateCharacter(state);
+			character->updateCharacter(state, level1, level2);
 			break;
 		}
 		case 2:
@@ -118,10 +118,10 @@ int main()
 			}
 			else if (programInit)
 			{
-				program->update(character, state);
+				program->update(character, level1, level2, state);
 			}
 			ennemy->updateEnnemies(&world, character, level2);
-			character->updateCharacter(state);
+			character->updateCharacter(state, level1, level2);
 			break;
 		}
 		case 4:

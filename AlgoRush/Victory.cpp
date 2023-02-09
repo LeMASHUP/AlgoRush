@@ -1,4 +1,5 @@
 #include "Victory.h"
+#include "Character.h"
 
 
 Victory::Victory()

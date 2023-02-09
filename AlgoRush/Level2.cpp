@@ -1,4 +1,5 @@
 #include "Level2.h"
+#include "Character.h"
 
 Level2::Level2() : Levels()
 {
