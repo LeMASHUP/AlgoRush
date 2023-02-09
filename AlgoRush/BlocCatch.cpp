@@ -8,25 +8,23 @@
 #include <cstdio>
 
 #include "Execblocs.h"
-
-//#include "Character.h"
 //#include "Object.h"
 
 #pragma execution_character_set( "utf-8" )
 
 
-void BlocCatch::action(/*Character* player, Object* object*/) {
-    //if (player.collideWith(/*object*/).hasCollided)
-    //player.catch();
+void BlocCatch::action(Character* player) {
+    //if (player.collideWith(object).hasCollided)
+    player->catchObject();
     //object.setIsDraw(false);
     std::cout << "un caractère" << std::endl;
 }
 
-BlocCatch::BlocCatch()
+BlocCatch::BlocCatch(/*Object* object*/) /*: m_object(object)*/
 {
     sf::Image image;
-    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!image.loadFromFile("assets/CATCH.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
-    this->setSize(Vector2f(75, 75));
+    this->setSize(Vector2f(80, 100));
     this->setTexture(&m_btexture);
 }

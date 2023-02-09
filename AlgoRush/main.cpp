@@ -1,6 +1,5 @@
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
-#include "BlockManager.h"
 
 #include <iostream>
 #include <string>
@@ -13,12 +12,15 @@
 #include "Ennemies.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "BlockManager.h"
+#include "Program.h"
 
 
 int main()
 {
-	int state = 2;
+	int state = 0;
 	bool levelCreated = false;
+	bool programInit = false;
 
 	srand(time(0));
 
@@ -40,7 +42,9 @@ int main()
 	Level2 level2(&world);
 	Character character;
 	Ennemies ennemy;
-  BlockManager BlockManager(&world);
+	BlockManager blockManager(&world);
+	Program* program = nullptr;
+
 
 	while (window.isOpen()) {
 
@@ -55,7 +59,21 @@ int main()
 				world.AddPhysicsBody(character);
 				ennemy.removePhysics(&world);
 				levelCreated = true;
+				blockManager.clearBlocInstructions();
+				if (programInit) {
+					delete program;
+					programInit = false;
+				}
 				break;
+			}
+			if (blockManager.getStart() && !programInit) {
+				program = new Program(blockManager.getBlockInstructions());
+				programInit = true;
+				program->init(&character);
+			}
+			else if (programInit)
+			{
+				program->update(&character);
 			}
 		}
 		case 2:
@@ -68,8 +86,24 @@ int main()
 				ennemy.initEnnemies(650, 200);
 				ennemy.addPhysics(&world);
 				levelCreated = true;
+				blockManager.clearBlocInstructions();
+				if (programInit) {
+					delete program;
+					programInit = false;
+				}
 				break;
 			}
+			if (blockManager.getStart() && !programInit) 
+			{
+				program = new Program(blockManager.getBlockInstructions());
+				programInit = true;
+				program->init(&character);
+			}
+			else if (programInit) 
+			{
+				program->update(&character);
+			}
+
 			ennemy.updateEnnemies(&world, &character, &level2);
 		}
 		default:
@@ -88,12 +122,7 @@ int main()
 			if (credits.updateCredits(&window, &event, state))
 				continue;
 
-			if (event.key.code == sf::Keyboard::D) character.forward();
-			if (event.key.code == sf::Keyboard::Q) character.backward();
-			if (event.key.code == sf::Keyboard::Z) character.jumpForward();
-			if (event.key.code == sf::Keyboard::Space) character.jump();
-      
-      BlockManager.update(&event);
+		blockManager.update(&event);
 		}
 
 		sf::Time currentTime = clock.getElapsedTime();
@@ -113,12 +142,14 @@ int main()
 			case 1:
 			{
 				level1.drawLevel(&window);
+				blockManager.draw(&window);
 				window.draw(character);
 				break;
 			}
 			case 2:
 			{
 				level2.drawLevel(&window);
+				blockManager.draw(&window);
 				window.draw(character);
 				ennemy.drawEnnemies(&window);
 				break;
@@ -131,8 +162,7 @@ int main()
 			default:
 				break;
 			}
-      BlockManager.draw(&window);
-			//world.VisualizeAllBounds(window);
+			world.VisualizeAllBounds(window);
 			window.display();
 		}
 	}

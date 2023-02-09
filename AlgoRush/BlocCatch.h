@@ -10,7 +10,9 @@
 
 
 class BlocCatch : public ExecBlocs {
+private:
+	//Object* m_object;
 public:
-	void action() override;
-	BlocCatch();
+	void action(Character* player) override;
+	BlocCatch(/*Object* m_object*/);
 };

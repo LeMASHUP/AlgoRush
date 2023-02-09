@@ -11,6 +11,6 @@
 
 class BlocJump : public ExecBlocs {
 public:
-	void action() override;
+	void action(Character* player) override;
 	BlocJump();
 };	

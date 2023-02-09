@@ -23,13 +23,15 @@ private:
 	sf::Texture m_blocTexture[9];
 	sf::RectangleShape m_startBloc;
 	sf::Texture m_startTexture;
-	vector<ExecBlocs*> m_blockInstructions;
+	vector<ExecBlocs*> m_blocInstructions;
 	int m_select;
 	bool m_start;
+
 public:
 	BlockManager(sfp::World* world);
 	void update(sf::Event* event);
 	void draw(sf::RenderWindow* window);
 	vector<ExecBlocs*>& const getBlockInstructions();
 	bool& const getStart();
+	void clearBlocInstructions();
 };

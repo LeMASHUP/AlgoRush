@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFPhysics.h>
+#include "ExecBlocs.h"
 
 class Program
 {
@@ -13,11 +14,12 @@ private:
 	sf::Time m_lastBlockTime;
 	bool m_init;
 	int m_pc;
-	//vector<ExecBlocs> m_blocksList;
+	int m_ic;
+	vector<ExecBlocs*> m_blocksList;
 
 public:
 
-	Program(/*vector<ExecBlocs*> blocksList*/);
+	Program(vector<ExecBlocs*> blocksList);
 
 	void init(Character* character);
 

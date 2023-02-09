@@ -9,21 +9,19 @@
 
 #include "Execblocs.h"
 
-//#include "Character.h"
-
 #pragma execution_character_set( "utf-8" )
 
 
-void BlocBackward::action(/*Character player*/) {
-    //player.backward();
+void BlocBackward::action(Character* player) {
+    player->backward();
     std::cout << "un caractère" << std::endl;
 }
 
 BlocBackward::BlocBackward()
 {
     sf::Image image;
-    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!image.loadFromFile("assets/LEFT.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
-    this->setSize(Vector2f(75, 75));
+    this->setSize(Vector2f(80, 100));
     this->setTexture(&m_btexture);
 }

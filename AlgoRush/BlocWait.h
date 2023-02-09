@@ -7,10 +7,11 @@
 #include <cstdio>
 
 #include "Execblocs.h"
+#include "Character.h"
 
 
 class BlocWait : public ExecBlocs {
 public:
-	void action() override;
+	void action(Character* player) override;
 	BlocWait();
 };

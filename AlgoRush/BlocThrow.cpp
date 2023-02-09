@@ -9,23 +9,21 @@
 
 #include "Execblocs.h"
 
-//#include "Character.h"
-
 #pragma execution_character_set( "utf-8" )
 
 
-void BlocThrow::action(/*Character player*/) {
-    //player.throwObject();
-    //object.setIsDraw(true);
-    //object.throwObject();
+void BlocThrow::action(Character* player) {
+    player->throwObject();
+    //object->setIsDraw(true);
+    //object->throwObject();
     std::cout << "un caractère" << std::endl;
 }
 
-BlocThrow::BlocThrow()
+BlocThrow::BlocThrow(/*Object* object*/) /*: m_object(object)*/
 {
     sf::Image image;
-    if (!image.loadFromFile("assets/block.png")) std::cout << "Error in loading blocup texture" << std::endl;
+    if (!image.loadFromFile("assets/THROW.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
-    setSize(Vector2f(75, 75));
+    setSize(Vector2f(80, 100));
     setTexture(&m_btexture);
 }
