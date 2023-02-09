@@ -23,8 +23,8 @@ public:
 	void removePhysics(sfp::World* world) override;
 	void setLevelsElapsedTime() override;
 	void setLevelsTries(bool addTry) override;
-	double getLevelsElapsedTime() override;
-	int getLevelsTries() override;
+	int& const getLevelsElapsedTime() override;
+	int& const getLevelsTries() override;
 	sfp::PhysicsRectangle& getTrashCan();
 	sfp::PhysicsRectangle& getFireHydrant();
 	void isWin(sf::RenderWindow* window, Character* character, int& state) override;

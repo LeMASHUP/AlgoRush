@@ -67,6 +67,8 @@ Level1::Level1() : Levels()
 	m_exit.setCenter(Vector2f(1400, 545));
 	m_exit.setTexture(&m_exitT);
 	m_exit.setStatic(true);
+
+	m_levelsTries = 0;
 }
 
 Level1::~Level1()
@@ -75,6 +77,7 @@ Level1::~Level1()
 
 void Level1::initLevels()
 {
+	setLevelsTries(true);
 	m_levelsBeginTime = levelsClock.getElapsedTime();
 }
 
@@ -109,28 +112,31 @@ void Level1::removePhysics(sfp::World* world)
 void Level1::setLevelsElapsedTime()
 {
 	m_levelsCurrentTime = levelsClock.getElapsedTime();
-	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asMilliseconds();
+	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asSeconds();
 }
 
 void Level1::setLevelsTries(bool addTry)
 {
 	if (addTry) m_levelsTries += 1;
 	else m_levelsTries = 0;
+	std::cout << m_levelsTries << std::endl;
 }
 
-double Level1::getLevelsElapsedTime()
+int& const Level1::getLevelsElapsedTime()
 {
 	return m_levelsElapsedTime;
 }
 
-int Level1::getLevelsTries()
+int& const Level1::getLevelsTries()
 {
+	std::cout << m_levelsTries << std::endl;
 	return m_levelsTries;
 }
 
 void Level1::isWin(sf::RenderWindow* window, Character* character, int& state)
 {
 	if (character->getCenter().x > m_exit.getCenter().x - m_exit.getSize().x / 2 && character->getCenter().x < m_exit.getCenter().x + m_exit.getSize().x / 2) {
+		setLevelsElapsedTime();
 		state = 4;
 	}
 }
