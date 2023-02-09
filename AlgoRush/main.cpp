@@ -51,21 +51,13 @@ int main()
 	GameOver* gameover = new GameOver();
 	Victory* victory = new Victory();
 	BlockManager* blockManager = new BlockManager(&world);
-  Program* program = nullptr;
+	Program* program = nullptr;
 
 	while (window.isOpen()) {
 
 		// To do whend the state change
 		switch (state)
 		{
-		case 0:
-		{
-			level1->removePhysics(&world);
-			level2->removePhysics(&world);
-			ennemy->removePhysics(&world);
-			world.RemovePhysicsBody(*character);
-			break;
-		}
 		case 1:
 		{
 			if (levelCreated == false)
@@ -76,21 +68,21 @@ int main()
 				ennemy->removePhysics(&world);
 				previousLevelState = 1;
 				levelCreated = true;
-				blockManager.clearBlocInstructions();
+				blockManager->clearBlocInstructions();
 				if (programInit) {
 					delete program;
 					programInit = false;
 				}
 				break;
 			}
-			if (blockManager.getStart() && !programInit) {
-				program = new Program(blockManager.getBlockInstructions());
+			if (blockManager->getStart() && !programInit) {
+				program = new Program(blockManager->getBlockInstructions());
 				programInit = true;
-				program->init(&character);
+				program->init(character);
 			}
 			else if (programInit)
 			{
-				program->update(&character);
+				program->update(character);
 			}
 		}
 		case 2:
@@ -104,22 +96,22 @@ int main()
 				ennemy->addPhysics(&world);
 				previousLevelState = 2;
 				levelCreated = true;
-				blockManager.clearBlocInstructions();
+				blockManager->clearBlocInstructions();
 				if (programInit) {
 					delete program;
 					programInit = false;
 				}
 				break;
 			}
-			if (blockManager.getStart() && !programInit) 
+			if (blockManager->getStart() && !programInit)
 			{
-				program = new Program(blockManager.getBlockInstructions());
+				program = new Program(blockManager->getBlockInstructions());
 				programInit = true;
-				program->init(&character);
+				program->init(character);
 			}
-			else if (programInit) 
+			else if (programInit)
 			{
-				program->update(&character);
+				program->update(character);
 			}
 			ennemy->updateEnnemies(&world, character, level2);
 		}
@@ -134,8 +126,13 @@ int main()
 			break;
 		}
 		//
-		default:
+		default: {
+			level1->removePhysics(&world);
+			level2->removePhysics(&world);
+			ennemy->removePhysics(&world);
+			world.RemovePhysicsBody(*character);
 			break;
+		}
 		}
 
 		while (window.pollEvent(event)) {
@@ -181,8 +178,6 @@ int main()
 			default:
 				break;
 			}
-
-		blockManager.update(&event);
 		}
 
 		sf::Time currentTime = clock.getElapsedTime();
