@@ -25,7 +25,7 @@ int main()
 	bool programInit = false;
 
 	// To delete when win and loose condition working 
-	bool test = false;
+	bool menuCreated = false;
 	//
 
 	srand(time(0));
@@ -70,6 +70,7 @@ int main()
 				levelCreated = true;
 				blockManager->clearBlocInstructions();
 				blockManager->setStart(false);
+				character->initCharacter();
 				if (programInit) {
 					delete program;
 					programInit = false;
@@ -100,6 +101,7 @@ int main()
 				levelCreated = true;
 				blockManager->clearBlocInstructions();
 				blockManager->setStart(false);
+				character->initCharacter();
 				if (programInit) {
 					delete program;
 					programInit = false;
@@ -118,17 +120,24 @@ int main()
 			}
 			ennemy->updateEnnemies(&world, character, level2);
 		}
-		// Case 4 to delete when win and loose condition working
-		case 5:
+		case 4:
 		{
-			if (test == false)
+			if (menuCreated == false)
 			{
-				gameover->setStringVariables(previousLevelState, level1, level2);
-				test = true;
+				victory->setStringVariables(previousLevelState, level1, level2);
+				menuCreated = true;
 			}
 			break;
 		}
-		//
+		case 5:
+		{
+			if (menuCreated == false)
+			{
+				gameover->setStringVariables(previousLevelState, level1, level2);
+				menuCreated = true;
+			}
+			break;
+		}
 		default: {
 			level1->removePhysics(&world);
 			level2->removePhysics(&world);
@@ -165,12 +174,12 @@ int main()
 			}
 			case 4:
 			{
-				if (victory->updateVictory(&window, &event, state, previousLevelState, levelCreated)) continue;
+				if (victory->updateVictory(&window, &event, state, previousLevelState, levelCreated, menuCreated)) continue;
 				break;
 			}
 			case 5:
 			{
-				if (gameover->updateGameOver(&window, &event, state, previousLevelState, levelCreated)) continue;
+				if (gameover->updateGameOver(&window, &event, state, previousLevelState, levelCreated, menuCreated)) continue;
 				break;
 			}
 			case 6:

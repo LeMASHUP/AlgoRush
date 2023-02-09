@@ -25,4 +25,5 @@ public:
 	int getPosY();
 	void setIsAlive(bool isAlive);
 	bool getIsAlive();
+	void initCharacter();
 };

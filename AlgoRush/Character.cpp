@@ -11,7 +11,6 @@ Character::Character() : m_isAlive(true), getObject(false)
 
 	this->setSize(Vector2f(50, 75));
 	this->setTexture(&m_characterT);
-	this->setCenter(Vector2f(200, 300));
 	this->setRestitution(0.15f);
 }
 
@@ -68,4 +67,10 @@ void Character::setIsAlive(bool isAlive)
 bool Character::getIsAlive()
 {
 	return m_isAlive;
+}
+
+void Character::initCharacter()
+{
+	this->setCenter(Vector2f(200, 300));
+	this->setVelocity(Vector2f(0, 0));
 }

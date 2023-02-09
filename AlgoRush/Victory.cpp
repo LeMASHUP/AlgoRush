@@ -74,11 +74,12 @@ void Victory::drawVictory(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated)
+bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_continueButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
 		levelCreated = false;
+		menuCreated = false;
 		state = previousLevelState + 1;
 		return true;
 	}
@@ -89,6 +90,7 @@ bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& sta
 	}
 	if (event->type == sf::Event::MouseButtonPressed && m_returnMenuButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
+		menuCreated = false;
 		state = 0;
 		return true;
 	}

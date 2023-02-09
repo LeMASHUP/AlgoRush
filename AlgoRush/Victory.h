@@ -39,6 +39,6 @@ public:
 	Victory();
 	~Victory();
 	void drawVictory(sf::RenderWindow* window);
-	bool updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated);
+	bool updateVictory(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated);
 	void setStringVariables(int& previousLevelState, Level1* level1, Level2* level2);
 };
