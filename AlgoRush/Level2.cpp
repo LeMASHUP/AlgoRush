@@ -1,6 +1,6 @@
 #include "Level2.h"
 
-Level2::Level2(sfp::World* world) : Levels()
+Level2::Level2() : Levels()
 {
 	// Images to load into texture
 	sf::Image m_backgroundI;
@@ -65,6 +65,11 @@ Level2::~Level2()
 {
 }
 
+void Level2::initLevels()
+{
+	m_levelsBeginTime = levelsClock.getElapsedTime();
+}
+
 void Level2::drawLevel(sf::RenderWindow* window)
 {
 	window->draw(m_background);
@@ -90,6 +95,28 @@ void Level2::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_trashCan);
 	world->RemovePhysicsBody(m_fireHydrant);
 	world->RemovePhysicsBody(m_exit);
+}
+
+void Level2::setLevelsElapsedTime()
+{
+	m_levelsCurrentTime = levelsClock.getElapsedTime();
+	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asMilliseconds();
+}
+
+void Level2::setLevelsTries(bool addTry)
+{
+	if (addTry) m_levelsTries += 1;
+	else m_levelsTries = 0;
+}
+
+double Level2::getLevelsElapsedTime()
+{
+	return m_levelsElapsedTime;
+}
+
+int Level2::getLevelsTries()
+{
+	return m_levelsTries;
 }
 
 sfp::PhysicsRectangle& Level2::getTrashCan()

@@ -2,7 +2,15 @@
 
 Character::Character() : m_isAlive(true), getObject(false)
 {
-	this->setSize(Vector2f(25, 50));
+	// Image to load into texture
+	sf::Image m_characterI;
+
+	// Load and check image and texture
+	if (!m_characterI.loadFromFile("assets/character.png")) std::cout << "Error in loading character texture" << std::endl;
+	if (!m_characterT.loadFromImage(m_characterI)) std::cout << "Error in loading character texture" << std::endl;
+
+	this->setSize(Vector2f(50, 75));
+	this->setTexture(&m_characterT);
 	this->setCenter(Vector2f(200, 300));
 	this->setRestitution(0.15f);
 }

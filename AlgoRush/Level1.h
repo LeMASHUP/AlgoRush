@@ -17,9 +17,14 @@ private:
 	sfp::PhysicsRectangle m_key;
 	sfp::PhysicsRectangle m_DVDPile;
 public:
-	Level1(sfp::World* world);
+	Level1();
 	~Level1();
+	void initLevels() override;
 	void drawLevel(sf::RenderWindow* window) override;
 	void addPhysics(sfp::World* world) override;
 	void removePhysics(sfp::World* world) override;
+	void setLevelsElapsedTime() override;
+	void setLevelsTries(bool addTry) override;
+	double getLevelsElapsedTime() override;
+	int getLevelsTries() override;
 };

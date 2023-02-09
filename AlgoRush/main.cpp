@@ -7,6 +7,7 @@
 #include <cstdio>
 
 #include "Menu.h"
+#include "GameOver.h"
 #include "Credits.h"
 #include "Character.h"
 #include "Ennemies.h"
@@ -14,13 +15,18 @@
 #include "Level2.h"
 #include "BlockManager.h"
 #include "Program.h"
-
+#include "Victory.h"
 
 int main()
 {
 	int state = 0;
+	int previousLevelState = 0;
 	bool levelCreated = false;
 	bool programInit = false;
+
+	// To delete when win and loose condition working 
+	bool test = false;
+	//
 
 	srand(time(0));
 
@@ -34,30 +40,41 @@ int main()
 	window.setFramerateLimit(60);
 
 	sf::Event event;
-
-	//Creation of levels and character
-	Menu menu;
-	Credits credits;
-	Level1 level1(&world);
-	Level2 level2(&world);
-	Character character;
-	Ennemies ennemy;
-	BlockManager blockManager(&world);
-	Program* program = nullptr;
-
+  
+	//Creation of levels, menus and character
+	Menu* menu = new Menu();
+	Credits* credits = new Credits();
+	Level1* level1 = new Level1();
+	Level2* level2 = new Level2();
+	Character* character = new Character();
+	Ennemies* ennemy = new Ennemies();
+	GameOver* gameover = new GameOver();
+	Victory* victory = new Victory();
+	BlockManager* blockManager = new BlockManager(&world);
+  Program* program = nullptr;
 
 	while (window.isOpen()) {
 
+		// To do whend the state change
 		switch (state)
 		{
+		case 0:
+		{
+			level1->removePhysics(&world);
+			level2->removePhysics(&world);
+			ennemy->removePhysics(&world);
+			world.RemovePhysicsBody(*character);
+			break;
+		}
 		case 1:
 		{
 			if (levelCreated == false)
 			{
-				level2.removePhysics(&world);
-				level1.addPhysics(&world);
-				world.AddPhysicsBody(character);
-				ennemy.removePhysics(&world);
+				level2->removePhysics(&world);
+				level1->addPhysics(&world);
+				world.AddPhysicsBody(*character);
+				ennemy->removePhysics(&world);
+				previousLevelState = 1;
 				levelCreated = true;
 				blockManager.clearBlocInstructions();
 				if (programInit) {
@@ -80,11 +97,12 @@ int main()
 		{
 			if (levelCreated == false)
 			{
-				level1.removePhysics(&world);
-				level2.addPhysics(&world);
-				world.AddPhysicsBody(character);
-				ennemy.initEnnemies(650, 200);
-				ennemy.addPhysics(&world);
+				level1->removePhysics(&world);
+				level2->addPhysics(&world);
+				world.AddPhysicsBody(*character);
+				ennemy->initEnnemies(650, 200);
+				ennemy->addPhysics(&world);
+				previousLevelState = 2;
 				levelCreated = true;
 				blockManager.clearBlocInstructions();
 				if (programInit) {
@@ -103,9 +121,19 @@ int main()
 			{
 				program->update(&character);
 			}
-
-			ennemy.updateEnnemies(&world, &character, &level2);
+			ennemy->updateEnnemies(&world, character, level2);
 		}
+		// Case 4 to delete when win and loose condition working
+		case 5:
+		{
+			if (test == false)
+			{
+				gameover->setStringVariables(previousLevelState, level1, level2);
+				test = true;
+			}
+			break;
+		}
+		//
 		default:
 			break;
 		}
@@ -116,11 +144,43 @@ int main()
 
 				window.close();
 			}
-			if (menu.updateMenu(&window, &event, state))
-				continue;
 
-			if (credits.updateCredits(&window, &event, state))
-				continue;
+			// To do while the state is set
+			switch (state)
+			{
+			case 0:
+			{
+				if (menu->updateMenu(&window, &event, state)) continue;
+				break;
+			}
+			case 1:
+			{
+				blockManager->update(&event);
+				break;
+			}
+			case 2:
+			{
+				blockManager->update(&event);
+				break;
+			}
+			case 4:
+			{
+				if (victory->updateVictory(&window, &event, state, previousLevelState)) continue;
+				break;
+			}
+			case 5:
+			{
+				if (gameover->updateGameOver(&window, &event, state, previousLevelState)) continue;
+				break;
+			}
+			case 6:
+			{
+				if (credits->updateCredits(&window, &event, state)) continue;
+				break;
+			}
+			default:
+				break;
+			}
 
 		blockManager.update(&event);
 		}
@@ -132,40 +192,54 @@ int main()
 			lastTime = currentTime;
 			world.UpdatePhysics(elapsedMs);
 			window.clear(sf::Color::Black);
+
+			// To draw while the state is set
 			switch (state)
 			{
 			case 0:
 			{
-				menu.drawMenu(&window);
+				menu->drawMenu(&window);
 				break;
 			}
 			case 1:
 			{
-				level1.drawLevel(&window);
-				blockManager.draw(&window);
-				window.draw(character);
+				level1->drawLevel(&window);
+				window.draw(*character);
+				blockManager->draw(&window);
 				break;
 			}
 			case 2:
 			{
-				level2.drawLevel(&window);
-				blockManager.draw(&window);
-				window.draw(character);
-				ennemy.drawEnnemies(&window);
+				level2->drawLevel(&window);
+				window.draw(*character);
+				ennemy->drawEnnemies(&window);
+				blockManager->draw(&window);
+				break;
+			}
+			case 4:
+			{
+				victory->drawVictory(&window);
+				break;
+			}
+			case 5:
+			{
+				gameover->drawGameOver(&window);
 				break;
 			}
 			case 6:
 			{
-				credits.drawCredits(&window);
+				credits->drawCredits(&window);
 				break;
 			}
 			default:
 				break;
 			}
-			world.VisualizeAllBounds(window);
+			//world.VisualizeAllBounds(window);
 			window.display();
 		}
 	}
 
+	// Free the memory of every objects created
+	delete(menu, credits, level1, level2, character, ennemy, gameover, victory, blockManager,program);
 	return 0;
 }

@@ -4,11 +4,17 @@
 #include "SFPhysics.h"
 
 #include <iostream>
-#include <string>
 
 class Levels
 {
 protected:
+	// Elapsed time since start of a level and number of tries
+	sf::Clock levelsClock;
+	sf::Time m_levelsBeginTime;
+	sf::Time m_levelsCurrentTime;
+	double m_levelsElapsedTime;
+	int m_levelsTries;
+
 	// Texture for all levels to load and keep
 	sf::Texture m_backgroundT;
 	sf::Texture m_floorT;
@@ -21,8 +27,12 @@ protected:
 	sfp::PhysicsRectangle m_blockBackground;
 public:
 	Levels();
-
+	virtual void initLevels() = 0;
 	virtual void drawLevel(sf::RenderWindow* window) = 0;
 	virtual void addPhysics(sfp::World* world) = 0;
 	virtual void removePhysics(sfp::World* world) = 0;
+	virtual void setLevelsElapsedTime() = 0;
+	virtual void setLevelsTries(bool addTry) = 0;
+	virtual double getLevelsElapsedTime() = 0;
+	virtual int getLevelsTries() = 0;
 };
