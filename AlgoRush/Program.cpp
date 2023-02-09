@@ -15,14 +15,14 @@ void Program::init(Character* character)
 	m_init = true;
 }
 
-void Program::update(Character* character)
+void Program::update(Character* character, int& state)
 {
 	std::cout << m_ic << std::endl;
 	std::cout << m_pc << std::endl;
 	if ((m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() <= 1500 && (m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1200 && character->getVelocity().y < 0.1) {
 		character->setVelocity(Vector2f(0, character->getVelocity().y));
 	}
-	if ((m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500 && character->getVelocity().y < 0.1) {
+	else if ((m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500 && character->getVelocity().y < 0.1) {
 		if (m_pc < m_blocksList.size()) {
 			m_blocksList.at(m_pc)->action(character);
 			m_lastBlockTime = m_clock.getElapsedTime();
@@ -35,5 +35,8 @@ void Program::update(Character* character)
 				m_ic++;
 			}
 		}
+	}
+	if (m_pc == m_blocksList.size() && (m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500) {
+		state = 5;
 	}
 }

@@ -11,6 +11,7 @@ private:
 	bool getObject;
 	sf::Time lastTime;
 	bool m_isAlive;
+	bool hightVelocity;
   
 public:
 	Character();
@@ -26,4 +27,5 @@ public:
 	void setIsAlive(bool isAlive);
 	bool getIsAlive();
 	void initCharacter();
+	void updateCharacter(int& state);
 };

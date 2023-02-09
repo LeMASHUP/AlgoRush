@@ -73,13 +73,14 @@ void GameOver::drawGameOver(sf::RenderWindow* window)
 	window->draw(m_returnMenuButton);
 }
 
-bool GameOver::updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated)
+bool GameOver::updateGameOver(sf::RenderWindow* window, sf::Event* event, int& state, int& previousLevelState, bool& levelCreated, bool& menuCreated, Character* character)
 {
 	if (event->type == sf::Event::MouseButtonPressed && m_retryButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
 	{
 		levelCreated = false;
 		menuCreated = false;
 		state = previousLevelState;
+		character->setIsAlive(true);
 		return true;
 	}
 	if (event->type == sf::Event::MouseButtonPressed && m_exitButton.getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y))
@@ -91,6 +92,7 @@ bool GameOver::updateGameOver(sf::RenderWindow* window, sf::Event* event, int& s
 	{
 		menuCreated = false;
 		state = 0;
+		character->setIsAlive(true);
 		return true;
 	}
 	return false;

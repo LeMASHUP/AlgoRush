@@ -48,13 +48,13 @@ Level1::Level1() : Levels()
 	m_bookPile.setTexture(&m_bookPileT);
 	m_bookPile.setStatic(true);
 
-	m_shelf.setSize(Vector2f(250, 50));
-	m_shelf.setCenter(Vector2f(600, 375));
+	m_shelf.setSize(Vector2f(300, 50));
+	m_shelf.setCenter(Vector2f(650, 425));
 	m_shelf.setTexture(&m_shelfT);
 	m_shelf.setStatic(true);
 
 	m_key.setSize(Vector2f(75, 75));
-	m_key.setCenter(Vector2f(600, 300));
+	m_key.setCenter(Vector2f(650, 350));
 	m_key.setTexture(&m_keyT);
 	m_key.setStatic(true);
 
