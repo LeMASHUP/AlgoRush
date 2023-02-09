@@ -4,17 +4,17 @@
 #include "SFPhysics.h"
 
 #include <iostream>
-#include <string>
 
 #include "Character.h"
-#include "Level1.h"
 #include "level2.h"
 
 class Ennemies
 {
 private:
+	// Ennemy object and texture
 	sf::Texture m_ennemyT;
 	sfp::PhysicsRectangle m_ennemy;
+
 	float m_ennemyVelocity;
 	bool m_isAlive;
 public:

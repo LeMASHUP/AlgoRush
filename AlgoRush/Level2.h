@@ -15,7 +15,7 @@ private:
 	sfp::PhysicsRectangle m_trashCan;
 	sfp::PhysicsRectangle m_fireHydrant;
 public:
-	Level2(sfp::World* world);
+	Level2();
 	~Level2();
 	void initLevels() override;
 	void drawLevel(sf::RenderWindow* window) override;

@@ -96,6 +96,7 @@ bool Victory::updateVictory(sf::RenderWindow* window, sf::Event* event, int& sta
 
 void Victory::setStringVariables(int& previousLevelState, Level1* level1, Level2* level2)
 {
+	// Text do put if the previous level is the last one or not
 	if (previousLevelState == 1)
 	{
 		m_victoryText.setString("             Well done !\nReady for the next level ?");

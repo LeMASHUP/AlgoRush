@@ -1,6 +1,6 @@
 #include "Level2.h"
 
-Level2::Level2(sfp::World* world) : Levels()
+Level2::Level2() : Levels()
 {
 	// Images to load into texture
 	sf::Image m_backgroundI;

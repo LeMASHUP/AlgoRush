@@ -16,7 +16,7 @@ private:
 	sf::Text m_gameName;
 	sf::Text m_groupName;
 
-	// Logos textures
+	// Logos and buttons textures
 	sf::Texture m_lahordeLogoT;
 	sf::Texture m_CILogoT;
 	sf::Texture m_exitButtonT;
