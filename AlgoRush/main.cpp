@@ -1,6 +1,5 @@
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
-#include "BlockManager.h"
 
 #include <iostream>
 #include <string>
@@ -14,6 +13,8 @@
 #include "Ennemies.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "BlockManager.h"
+#include "Program.h"
 #include "Victory.h"
 
 int main()
@@ -21,6 +22,7 @@ int main()
 	int state = 0;
 	int previousLevelState = 0;
 	bool levelCreated = false;
+	bool programInit = false;
 
 	// To delete when win and loose condition working 
 	bool test = false;
@@ -38,7 +40,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	sf::Event event;
-
+  
 	//Creation of levels, menus and character
 	Menu* menu = new Menu();
 	Credits* credits = new Credits();
@@ -49,6 +51,7 @@ int main()
 	GameOver* gameover = new GameOver();
 	Victory* victory = new Victory();
 	BlockManager* blockManager = new BlockManager(&world);
+  Program* program = nullptr;
 
 	while (window.isOpen()) {
 
@@ -73,7 +76,21 @@ int main()
 				ennemy->removePhysics(&world);
 				previousLevelState = 1;
 				levelCreated = true;
+				blockManager.clearBlocInstructions();
+				if (programInit) {
+					delete program;
+					programInit = false;
+				}
 				break;
+			}
+			if (blockManager.getStart() && !programInit) {
+				program = new Program(blockManager.getBlockInstructions());
+				programInit = true;
+				program->init(&character);
+			}
+			else if (programInit)
+			{
+				program->update(&character);
 			}
 		}
 		case 2:
@@ -87,7 +104,22 @@ int main()
 				ennemy->addPhysics(&world);
 				previousLevelState = 2;
 				levelCreated = true;
+				blockManager.clearBlocInstructions();
+				if (programInit) {
+					delete program;
+					programInit = false;
+				}
 				break;
+			}
+			if (blockManager.getStart() && !programInit) 
+			{
+				program = new Program(blockManager.getBlockInstructions());
+				programInit = true;
+				program->init(&character);
+			}
+			else if (programInit) 
+			{
+				program->update(&character);
 			}
 			ennemy->updateEnnemies(&world, character, level2);
 		}
@@ -150,10 +182,7 @@ int main()
 				break;
 			}
 
-			if (event.key.code == sf::Keyboard::D) character->forward();
-			if (event.key.code == sf::Keyboard::Q) character->backward();
-			if (event.key.code == sf::Keyboard::Z) character->jumpForward();
-			if (event.key.code == sf::Keyboard::Space) character->jump();
+		blockManager.update(&event);
 		}
 
 		sf::Time currentTime = clock.getElapsedTime();
@@ -211,6 +240,6 @@ int main()
 	}
 
 	// Free the memory of every objects created
-	delete(menu, credits, level1, level2, character, ennemy, gameover, victory, blockManager);
+	delete(menu, credits, level1, level2, character, ennemy, gameover, victory, blockManager,program);
 	return 0;
 }

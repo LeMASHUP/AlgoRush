@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
+#include "Character.h"
 
 class ExecBlocs : public sf::RectangleShape
 {
@@ -15,8 +16,9 @@ protected:
 	int m_iteration;
 	sf::Text m_textIteration;
 	sf::Font m_font;
+
 public:
-	virtual void action() = 0;
+	virtual void action(Character* player) = 0;
 	ExecBlocs();
 	void draw(sf:: RenderWindow* window);
 	sf::Text& const getTextIteration();

@@ -10,7 +10,9 @@
 
 
 class BlocThrow : public ExecBlocs {
+private:
+	//Object* m_object;
 public:
-	void action() override;
-	BlocThrow();
+	void action(Character* player) override;
+	BlocThrow(/*Object* m_object*/);
 };
