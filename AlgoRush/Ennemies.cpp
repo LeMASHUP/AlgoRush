@@ -20,7 +20,7 @@ Ennemies::~Ennemies()
 
 void Ennemies::initEnnemies(float pos_x, float pos_y)
 {
-
+	m_isAlive = true;
 	m_ennemy.setCenter(Vector2f(pos_x, pos_y));
 }
 

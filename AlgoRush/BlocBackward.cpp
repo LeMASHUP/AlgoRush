@@ -14,14 +14,17 @@
 
 void BlocBackward::action(Character* player) {
     player->backward();
-    std::cout << "un caractère" << std::endl;
 }
 
 BlocBackward::BlocBackward()
 {
+    // Image to load into texture
     sf::Image image;
+
+    // Load and check image and texture
     if (!image.loadFromFile("assets/LEFT.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+
     this->setSize(Vector2f(80, 100));
     this->setTexture(&m_btexture);
 }

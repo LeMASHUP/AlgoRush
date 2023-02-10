@@ -52,7 +52,7 @@ int main()
 
 	while (window.isOpen()) {
 
-		// To do whend the state change
+		// To do whent the state change
 		switch (state)
 		{
 		case 1:
@@ -245,7 +245,6 @@ int main()
 			default:
 				break;
 			}
-			//world.VisualizeAllBounds(window);
 			window.display();
 		}
 	}

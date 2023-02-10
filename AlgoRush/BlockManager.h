@@ -1,3 +1,5 @@
+#pragma once
+
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
 #include <windows.h>
@@ -17,9 +19,9 @@
 
 class BlockManager {
 private:
-	//m_blockList[0] correspond à BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
+	//m_blockList[0] = BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
 	sf::RectangleShape m_blockList[9];
-	//m_blocTexture[0] correspond au textures de BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
+	//texture of each bloc in the same order of blocklist
 	sf::Texture m_blocTexture[9];
 	sf::RectangleShape m_startBloc;
 	sf::Texture m_startTexture;

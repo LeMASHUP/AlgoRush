@@ -120,7 +120,6 @@ void Level1::setLevelsTries(bool addTry)
 {
 	if (addTry) m_levelsTries += 1;
 	else m_levelsTries = 0;
-	std::cout << m_levelsTries << std::endl;
 }
 
 int& const Level1::getLevelsElapsedTime()
@@ -130,7 +129,6 @@ int& const Level1::getLevelsElapsedTime()
 
 int& const Level1::getLevelsTries()
 {
-	std::cout << m_levelsTries << std::endl;
 	return m_levelsTries;
 }
 

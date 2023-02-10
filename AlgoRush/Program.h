@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Character.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -15,7 +16,9 @@ private:
 	sf::Clock m_clock;
 	sf::Time m_lastBlockTime;
 	bool m_init;
+	//program counter
 	int m_pc;
+	//iteration counter
 	int m_ic;
 	vector<ExecBlocs*> m_blocksList;
 

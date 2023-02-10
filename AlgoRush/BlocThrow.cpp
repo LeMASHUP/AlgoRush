@@ -16,14 +16,17 @@ void BlocThrow::action(Character* player) {
     player->throwObject();
     //object->setIsDraw(true);
     //object->throwObject();
-    std::cout << "un caractère" << std::endl;
 }
 
 BlocThrow::BlocThrow(/*Object* object*/) /*: m_object(object)*/
 {
+    // Image to load into texture
     sf::Image image;
+
+    // Load and check image and texture
     if (!image.loadFromFile("assets/THROW.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+
     setSize(Vector2f(80, 100));
     setTexture(&m_btexture);
 }

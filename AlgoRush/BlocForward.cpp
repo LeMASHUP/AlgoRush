@@ -14,14 +14,17 @@
 
 void BlocForward::action(Character* player) {
     player->forward();
-    std::cout << "un caractère" << std::endl;
 }
 
 BlocForward::BlocForward()
 {
+    // Image to load into texture
     sf::Image image;
+
+    // Load and check image and texture
     if (!image.loadFromFile("assets/RIGHT.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+
     setSize(Vector2f(80, 100));
     setTexture(&m_btexture);
 }

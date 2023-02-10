@@ -17,11 +17,12 @@ void Program::init(Character* character)
 
 void Program::update(Character* character, Level1* level1, Level2* level2, int& state)
 {
-	std::cout << m_ic << std::endl;
-	std::cout << m_pc << std::endl;
+	//stop character movement in x 
 	if ((m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() <= 1500 && (m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1200 && character->getVelocity().y < 0.1) {
 		character->setVelocity(Vector2f(0, character->getVelocity().y));
 	}
+
+	//if the action is finished go to the next iteration or the next action
 	else if ((m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500 && character->getVelocity().y < 0.1) {
 		if (m_pc < m_blocksList.size()) {
 			m_blocksList.at(m_pc)->action(character);
@@ -36,6 +37,8 @@ void Program::update(Character* character, Level1* level1, Level2* level2, int& 
 			}
 		}
 	}
+
+	//if all the actions are done and the level is not finish change the state to menu gameover
 	if (m_pc == m_blocksList.size() && (m_clock.getElapsedTime() - m_lastBlockTime).asMilliseconds() > 1500) {
 		if (state == 1) level1->setLevelsElapsedTime();
 		else if (state == 2) level2->setLevelsElapsedTime();
