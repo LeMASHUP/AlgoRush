@@ -1,3 +1,5 @@
+#pragma once
+
 #include "SFML/Graphics.hpp"
 #include "SFPhysics.h"
 #include <windows.h>

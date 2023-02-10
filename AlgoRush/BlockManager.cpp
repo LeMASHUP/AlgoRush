@@ -8,6 +8,8 @@
 BlockManager::BlockManager(sfp::World* world) :m_start(false)
 {
     m_select = -1;
+
+    //init blocs boutons
 	for (int i = 0; i < 8; i++) {
 		m_blockList[i].setSize(Vector2f (100, 65));
 		m_blockList[i].setPosition(Vector2f(100+180*i, 25));
@@ -17,9 +19,14 @@ BlockManager::BlockManager(sfp::World* world) :m_start(false)
     m_startBloc.setSize(Vector2f(80, 100));
     m_startBloc.setPosition(Vector2f(150, 765));
 
+
+    // Image to load into texture
     sf::Image image;
+
+    // Load and check image and texture
     if (!image.loadFromFile("assets/LEFT.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_blocTexture[0].loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+
     m_blockList[0].setTexture(&m_blocTexture[0]);
 
     if (!image.loadFromFile("assets/CATCH.png")) std::cout << "Error in loading blocup texture" << std::endl;
@@ -66,66 +73,57 @@ void BlockManager::update(sf::Event* event)
             m_select = -1;
         }
 
+        // Add bloc in list when the bouton is pressed
         for (int i = 0; i < 9; i++) {
             if (m_blockList[i].getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y)) {
-                //m_blockList[0] correspond à BlocBackward, [1] = BlocCatch, [2] = BlocForward, [3] = BlocJump, [4] = BlocJumpForward, [5] = BlocThrow, [6] = BlocWait
                 switch (i) {
                   case 0 :
                     {
                       m_blocInstructions.push_back(new BlocBackward);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 1" << std::endl;
                       break;
                     }
                   case 1:
                   {
                       m_blocInstructions.push_back(new BlocCatch);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 2" << std::endl;
                       break;
                   }
                   case 2:
                   {
                       m_blocInstructions.push_back(new BlocForward);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 3" << std::endl;
                       break;
                   }
                   case 3:
                   {
                       m_blocInstructions.push_back(new BlocJump);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 4" << std::endl;
                       break;
                   }
                   case 4:
                   {
                       m_blocInstructions.push_back(new BlocJumpForward);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 5" << std::endl;
                       break;
                   }
                   case 5:
                   {
                       m_blocInstructions.push_back(new BlocThrow);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 6" << std::endl;
                       break;
                   }
                   case 6:
                   {
                       m_blocInstructions.push_back(new BlocWait);
                       m_blocInstructions.back()->setPosition(Vector2f(150 + 80 * m_blocInstructions.size(), 765));
-                      std::cout << "Print 7" << std::endl;
                       break;
                   }
                   case 7:
                   {
                       if (m_blocInstructions.size() > 0) {
-                        std::cout << "Delete" << std::endl;
                         delete m_blocInstructions.back();
                         m_blocInstructions.pop_back();
-                        std::cout << "Deleted" << std::endl;
                       }
                       break;
                   }
@@ -133,7 +131,6 @@ void BlockManager::update(sf::Event* event)
                   {
                       if (m_blocInstructions.size() > 0) {
                           m_start = true;
-                          //
                       }
                   }
                   default: 
@@ -145,13 +142,13 @@ void BlockManager::update(sf::Event* event)
         }
         for (int i = 0; i < m_blocInstructions.size(); i++) {
             if (m_blocInstructions.at(i)->getGlobalBounds().contains(event->mouseButton.x, event->mouseButton.y)) {
-                std::cout << "Modified" << std::endl;
                 m_select = i;
-                std::cout << m_select << std::endl;
                 break;
             }
         }
     }
+
+    // Modified iteration value when the bouton is pressed
     else if (event-> type == sf::Event::KeyPressed && !m_start){
 
         if (event->key.code == sf::Keyboard::Numpad0 && m_select>=0) {
@@ -283,7 +280,6 @@ void BlockManager::update(sf::Event* event)
             iteration = 0;
             m_blocInstructions.at(m_select)->setIteration(iteration);
             m_blocInstructions.at(m_select)->getTextIteration().setString(std::to_string(iteration));
-            std::cout << "Number delete" << std::endl;
         }
     }
 }

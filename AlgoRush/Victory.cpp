@@ -110,11 +110,12 @@ void Victory::setStringVariables(int& previousLevelState, Level1* level1, Level2
 		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level1->getLevelsTries());
 		m_levelTriesText.setString(m_levelTriesString);
+		m_continueButton.setPosition(Vector2f(875, 400));
 	}
 	else if (previousLevelState == 2)
 	{
 		m_victoryText.setString("             Great job !\nYou finish the game !");
-		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsElapsedTime());
+		m_levelElapsedTimeString = "Elapsed time on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsElapsedTime()) + " scds";
 		m_levelElapsedTimeText.setString(m_levelElapsedTimeString);
 		m_levelTriesString = "Number of tries on level " + std::to_string(previousLevelState) + " : " + std::to_string(level2->getLevelsTries());
 		m_levelTriesText.setString(m_levelTriesString);

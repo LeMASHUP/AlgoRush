@@ -12,14 +12,17 @@
 
 void BlocWait::action(Character* player) {
     player->wait();
-    std::cout << "un caractère" << std::endl;
 }
 
 BlocWait::BlocWait()
 {
+    // Image to load into texture
     sf::Image image;
+
+    // Load and check image and texture
     if (!image.loadFromFile("assets/WAIT.png")) std::cout << "Error in loading blocup texture" << std::endl;
     if (!m_btexture.loadFromImage(image)) std::cout << "Error in loading blocup texture" << std::endl;
+
     setSize(Vector2f(80, 100));
     setTexture(&m_btexture);
 }

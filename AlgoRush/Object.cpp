@@ -5,9 +5,13 @@
 
 Object::Object(Vector2f scale) : m_scale(scale), m_draw(true)
 {
+	// Image to load into texture
 	sf::Image image;
+
+	// Load and check image and texture
 	if (!image.loadFromFile("assets/key.png")) std::cout << "Error in loading character image" << std::endl;
 	if (!m_texture.loadFromImage(image)) std::cout << "Error in loading character texture" << std::endl;
+
 	this->setTexture(&m_texture);
 	this->setScale(m_scale);
 }

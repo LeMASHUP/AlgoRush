@@ -52,7 +52,7 @@ Level2::Level2() : Levels()
 	m_trashCan.setStatic(true);
 
 	m_fireHydrant.setSize(Vector2f(100, 150));
-	m_fireHydrant.setCenter(Vector2f(1000, 595));
+	m_fireHydrant.setCenter(Vector2f(1050, 595));
 	m_fireHydrant.setTexture(&m_fireHydrantT);
 	m_fireHydrant.setStatic(true);
 
@@ -90,7 +90,6 @@ void Level2::addPhysics(sfp::World* world)
 	world->AddPhysicsBody(m_floor);
 	world->AddPhysicsBody(m_trashCan);
 	world->AddPhysicsBody(m_fireHydrant);
-	//world->AddPhysicsBody(m_exit);
 }
 
 void Level2::removePhysics(sfp::World* world)
@@ -98,13 +97,12 @@ void Level2::removePhysics(sfp::World* world)
 	world->RemovePhysicsBody(m_floor);
 	world->RemovePhysicsBody(m_trashCan);
 	world->RemovePhysicsBody(m_fireHydrant);
-	//world->RemovePhysicsBody(m_exit);
 }
 
 void Level2::setLevelsElapsedTime()
 {
 	m_levelsCurrentTime = levelsClock.getElapsedTime();
-	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asMilliseconds();
+	m_levelsElapsedTime = (m_levelsCurrentTime - m_levelsBeginTime).asSeconds();
 }
 
 void Level2::setLevelsTries(bool addTry)
