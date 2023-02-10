@@ -116,7 +116,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML\lib;$(SolutionDir)packages\SFPhysics.2.0.1\build\native\x64\Debug\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;SFPhysics.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;SFPhysics.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,11 +135,53 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML\lib;$(SolutionDir)packages\SFPhysics.2.0.1\build\native\x64\Debug\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;SFPhysics.lib;%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;SFPhysics.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockManager.cpp" />
+    <ClCompile Include="BlocCatch.cpp" />
+    <ClCompile Include="BlocJumpForward.cpp" />
+    <ClCompile Include="BlocWait.cpp" />
+    <ClCompile Include="BlocBackward.cpp" />
+    <ClCompile Include="BlocForward.cpp" />
+    <ClCompile Include="BlocThrow.cpp" />
+    <ClCompile Include="BlocJump.cpp" />
+    <ClCompile Include="ExecBlocs.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="Ennemies.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Level1.cpp" />
+    <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Levels.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Victory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BlockManager.h" />
+    <ClInclude Include="BlocJumpForward.h" />
+    <ClInclude Include="BlocWait.h" />
+    <ClInclude Include="BlocCatch.h" />
+    <ClInclude Include="BlocBackward.h" />
+    <ClInclude Include="BlocForward.h" />
+    <ClInclude Include="BlocThrow.h" />
+    <ClInclude Include="BlocJump.h" />
+    <ClInclude Include="ExecBlocs.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Credits.h" />
+    <ClInclude Include="Ennemies.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Program.h" />
+    <ClInclude Include="Victory.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Level1.h" />
+    <ClInclude Include="Level2.h" />
+    <ClInclude Include="Levels.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
